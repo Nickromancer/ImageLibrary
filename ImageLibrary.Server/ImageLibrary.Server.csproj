@@ -29,7 +29,6 @@
     <Folder Include="Application\Image\Commands\" />
     <Folder Include="Application\Image\Handlers\" />
     <Folder Include="Application\Image\Queries\" />
-    <Folder Include="Presentation\" />
   </ItemGroup>
 
 </Project>
