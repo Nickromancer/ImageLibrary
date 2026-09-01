@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="imagelibrary.client/imagelibrary.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="ImageLibrary.Server/ImageLibrary.Server.csproj" />
+</Solution>

@@ -1,0 +1,6 @@
+@ImageLibrary.Server_HostAddress = http://localhost:5277
+
+GET {{ImageLibrary.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
