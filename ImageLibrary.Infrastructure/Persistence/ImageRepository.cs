@@ -10,9 +10,8 @@ namespace ImageLibrary.Infrastructure.Persistence
 {
     public class ImageRepository : IImageRepository
     {
-
-        private readonly IDataAccess _context;
-        public ImageRepository(IDataAccess context)
+        private readonly AppDbContext _context;
+        public ImageRepository(AppDbContext context)
         {
             _context = context;
         }
@@ -20,8 +19,9 @@ namespace ImageLibrary.Infrastructure.Persistence
         public async Task<Image> AddImageAsync(Image image)
         {
             //await _context.Images.AddAsync(image);
-            //await _context.SaveChangesAsync();
-            _context.InsertImage(image.Name, image.Description);
+            //await _context.SaveChangesAsync
+            await _context.AddAsync(image);
+            await _context.SaveChangesAsync();
             return image;
         }
 
@@ -30,9 +30,9 @@ namespace ImageLibrary.Infrastructure.Persistence
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Image>> GetAllImagesAsync()
+        public async Task<List<Image>> GetAllImagesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Images.ToListAsync();
         }
 
         public Task<Image> GetByIdAsync(int id)

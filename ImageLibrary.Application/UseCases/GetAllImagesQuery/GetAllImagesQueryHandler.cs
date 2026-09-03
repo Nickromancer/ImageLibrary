@@ -12,16 +12,16 @@ namespace ImageLibrary.Application.UseCases.UploadImage
 {
     public class GetAllImagesQueryHandler : IRequestHandler<GetAllImagesQuery, List<Image>>
     {
-        private readonly IDataAccess _data;
+        private readonly IImageRepository _data;
 
-        public GetAllImagesQueryHandler(IDataAccess data)
+        public GetAllImagesQueryHandler(IImageRepository data)
         {
             _data = data;
         }
        
         public Task<List<Image>> Handle(GetAllImagesQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_data.GetAllImages());
+            return _data.GetAllImagesAsync();
         }
     }
 }

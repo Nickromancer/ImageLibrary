@@ -1,6 +1,8 @@
 using ImageLibrary.Application;
 using ImageLibrary.Application.Interfaces;
 using ImageLibrary.Infrastructure.Persistence;
+using ImageLibrary.Server.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,9 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoApi", Version = "v1" });
 });
 
+var connectionString = builder.Configuration["ImageLibrary:ConnectionString"];
+
+
 builder.Services.AddSingleton<IDataAccess, DemoDataAccess>();
 
 builder.Services.AddMediatR(cfg =>
@@ -21,7 +26,7 @@ builder.Services.AddMediatR(cfg =>
 });
 
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
-//builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString!));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

@@ -19,8 +19,8 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
 
             // Seed data
             modelBuilder.Entity<Image>().HasData(
-                new Image() { Name = "CuteCat", Description = "Picture of Cat", Id = Guid.NewGuid() },
-                new Image() { Name = "Doggy", Description = "Picture of Dog", Id = Guid.NewGuid() }
+                new Image() { Name = "CuteCat", Description = "Picture of Cat", Id = new Guid("11111111-1111-1111-1111-111111111111") },
+                new Image() { Name = "Doggy", Description = "Picture of Dog", Id = new Guid("22222222-2222-2222-2222-222222222222") }
             );
         }
     }

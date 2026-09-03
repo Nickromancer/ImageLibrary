@@ -12,9 +12,9 @@ namespace ImageLibrary.Application.UseCases.UploadImage
 {
     public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand, Image>
     {
-        private readonly IDataAccess _data;
+        private readonly IImageRepository _data;
 
-        public UploadImageCommandHandler(IDataAccess data)
+        public UploadImageCommandHandler(IImageRepository data)
         {
             _data = data;
         }
@@ -26,9 +26,7 @@ namespace ImageLibrary.Application.UseCases.UploadImage
                 Description = request.Description,
             };
 
-            return Task.FromResult(_data.InsertImage(request.Name, request.Description));
-            //return _data.AddImageAsync(image);
-
+            return _data.AddImageAsync(image);
         }
     }
 }
