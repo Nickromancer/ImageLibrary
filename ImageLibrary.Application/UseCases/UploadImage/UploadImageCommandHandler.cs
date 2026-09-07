@@ -24,6 +24,8 @@ namespace ImageLibrary.Application.UseCases.UploadImage
             {
                 Name = request.Name,
                 Description = request.Description,
+                ImageData = request.ImageData,
+                ContentType = request.ContentType,
             };
 
             return _data.AddImageAsync(image);

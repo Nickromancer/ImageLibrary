@@ -17,10 +17,12 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
         {
             modelBuilder.Entity<Image>().HasKey(p => p.Id);
 
+            var placeholderPng = Convert.FromBase64String(
+                "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=");
             // Seed data
-            modelBuilder.Entity<Image>().HasData(
-                new Image() { Name = "CuteCat", Description = "Picture of Cat", Id = new Guid("11111111-1111-1111-1111-111111111111") },
-                new Image() { Name = "Doggy", Description = "Picture of Dog", Id = new Guid("22222222-2222-2222-2222-222222222222") }
+           modelBuilder.Entity<Image>().HasData(
+                new Image() { Name = "CuteCat", Description = "Picture of Cat", ImageData = placeholderPng, ContentType = "image/png", Id = new Guid("11111111-1111-1111-1111-111111111111") },
+                new Image() { Name = "Doggy", Description = "Picture of Dog", ImageData = placeholderPng, ContentType = "image/png", Id = new Guid("22222222-2222-2222-2222-222222222222") }
             );
         }
     }

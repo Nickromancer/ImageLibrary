@@ -1,58 +1,108 @@
-﻿import { useEffect, useState } from 'react';
-import './App.css';
+﻿import { useState } from "react";
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface UploadedImage {
+    id: string;
+    name: string;
+    description: string;
+    contentType: string;
 }
 
-function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
+export function ImageUpload() {
+    const [file, setFile] = useState<File | null>(null);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [preview, setPreview] = useState<string | null>(null);
+    const [uploading, setUploading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selected = e.target.files?.[0] ?? null;
+        setFile(selected);
+        setPreview(selected ? URL.createObjectURL(selected) : null);
+    };
 
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!file) {
+            setError("Please select a file.");
+            return;
+        }
+
+        setUploading(true);
+        setError(null);
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("name", name);
+        formData.append("description", description);
+        console.log("Forming...");
+
+        try {
+            console.log("Trying to fetch...");
+            const res = await fetch("/api/image", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!res.ok) {
+                throw new Error(`Upload failed: ${res.status}`);
+            }
+
+            const result: UploadedImage = await res.json();
+            console.log("Uploaded:", result);
+
+            // reset form
+            setFile(null);
+            setName("");
+            setDescription("");
+            setPreview(null);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Upload failed.");
+        } finally {
+            setUploading(false);
+        }
+    };
 
     return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
-    );
+        <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+            <div>
+                <label>Image file</label>
+                <input type="file" accept="image/*" onChange={handleFileChange} />
+            </div>
 
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        if (response.ok) {
-            const data = await response.json();
-            setForecasts(data);
-        }
-    }
+            {preview && (
+                <img
+                    src={preview}
+                    alt="Preview"
+                    style={{ maxWidth: "100%", marginTop: 8, marginBottom: 8 }}
+                />
+            )}
+
+            <div>
+                <label>Name</label>
+                <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+            </div>
+
+            <div>
+                <label>Description</label>
+                <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+            </div>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
+
+            <button type="submit" disabled={uploading}>
+                {uploading ? "Uploading..." : "Upload"}
+            </button>
+        </form>
+    );
 }
 
-export default App;
+export default ImageUpload;
