@@ -35,10 +35,8 @@ export function ImageUpload() {
         formData.append("file", file);
         formData.append("name", name);
         formData.append("description", description);
-        console.log("Forming...");
 
         try {
-            console.log("Trying to fetch...");
             const res = await fetch("/api/image", {
                 method: "POST",
                 body: formData,

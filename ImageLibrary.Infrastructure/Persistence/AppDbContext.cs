@@ -1,10 +1,12 @@
 ﻿using System.Reflection.Emit;
+using ImageLibrary.Domain.Entities;
 using ImageLibrary.Server.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ImageLibrary.Server.Infrastructure.Persistence
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -15,6 +17,8 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Image>().HasKey(p => p.Id);
 
             var placeholderPng = Convert.FromBase64String(

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ImageLibrary.Application.UseCases.UploadImage;
 using ImageLibrary.Server.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,36 +23,39 @@ namespace ImageLibrary.Presentation.Controllers
             _mediator = mediator;
         }
 
-        //[HttpPost]
-        //public async Task<Image> Post([FromBody] Image value)
-        //{
-        //    return await _mediator.Send(new UploadImageCommand(value.Name, value.Description, value.ImageData, value.ContentType));
-        //}
+        public class UploadImageRequest
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public IFormFile File { get; set; }
+        }
 
+        [Authorize]
         [HttpPost]
         [RequestSizeLimit(50_000_000)]
-        public async Task<ActionResult<Image>> Post([FromForm] string name, [FromForm] string description, [FromForm] IFormFile file)
+        public async Task<ActionResult<Image>> Post([FromForm] UploadImageRequest request)
         {
-            if (file == null || file.Length == 0)
+            if (request.File == null || request.File.Length == 0)
                 return BadRequest("No file uploaded.");
 
             var allowedTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
-            if (!allowedTypes.Contains(file.ContentType))
+            if (!allowedTypes.Contains(request.File.ContentType))
                 return BadRequest("Unsupported file type.");
 
             using var memoryStream = new MemoryStream();
-            await file.CopyToAsync(memoryStream);
+            await request.File.CopyToAsync(memoryStream);
 
             var result = await _mediator.Send(new UploadImageCommand(
-                name,
-                description,
+                request.Name,
+                request.Description,
                 memoryStream.ToArray(),
-                file.ContentType
+                request.File.ContentType
             ));
 
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<List<Image>> Get()
         {
