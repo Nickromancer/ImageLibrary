@@ -1,0 +1,9 @@
+<div class="gallery">
+  @for (image of images(); track image.id) {
+    <div class="image-card">
+      <img [src]="image.imageUrl" [alt]="image.name" height="300" />
+      <h3>{{ image.name }}</h3>
+      <p>{{ image.description }}</p>
+    </div>
+  }
+</div>
