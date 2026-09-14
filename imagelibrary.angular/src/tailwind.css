@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Helvetica_Punk';
+  src: url('./fonts/Helvetica_Punk.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dystopian';
+  src: url('./fonts/Dystopian-Canticle-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('./fonts/Helvetica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-punk: 'Helvetica_Punk', sans-serif;
+  --font-dystopian: 'Dystopian', sans-serif;
+  --font-helvetica: 'Helvetica', sans-serif;
+  --color-punk-red: #e01a4f;
+  --color-punk-orange: #f15946;
+  --color-punk-yellow: #f9c22e;
+  --color-punk-blue: #53b3cb;
+  --color-punk-black: #0c090d;
+}
