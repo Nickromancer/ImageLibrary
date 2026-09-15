@@ -1,7 +1,7 @@
 <div>
   <form class="flex flex-col" (ngSubmit)="onSubmit()">
     <div
-      class="flex flex-col *:-rotate-x-10 *:rotate-y-55 perspective-origin-bottom-right perspective-[200px] mb-4"
+      class="flex flex-col *:-rotate-x-10 *:rotate-y-55 perspective-origin-bottom-right perspective-[200px] mb-10 w-60 mt-20"
     >
       <label class="font-helvetica text-3xl">E-mail</label>
       <input
@@ -14,7 +14,7 @@
     </div>
 
     <div
-      class="flex flex-col *:rotate-x-10 *:-rotate-y-55 perspective-origin-bottom-left perspective-[200px] mb-8"
+      class="flex flex-col *:rotate-x-10 *:-rotate-y-55 perspective-origin-bottom-left perspective-[200px] mb-20"
     >
       <label class="font-helvetica text-3xl">Password</label>
       <input
@@ -26,12 +26,13 @@
       />
     </div>
 
-    @if (error) {
-      <p class="error">{{ error }}</p>
-    }
+    <p class="error font-dystopian text-center text-4xl mb-4">{{ error }}&nbsp;</p>
+
     <div class="flex justify-center">
-      <button class="font-dystopian text-6xl w-fit text-black" type="submit" [disabled]="loading">
-        {{ loading ? 'Logging in...' : 'Login' }}
+      <button class="bg-black border-black border-2 rounded-2xl" type="submit" [disabled]="loading">
+        <p class="font-dystopian text-6xl w-28 h-17 text-white">
+          {{ loading ? 'Wait!' : 'Login' }}
+        </p>
       </button>
     </div>
   </form>

@@ -1,19 +1,11 @@
-<div class="flex flex-col h-screen w-full bg-cover bg-center bg-[url('/halftone.png')]">
-  <div class="flex h-48 w-full justify-center pt-7">
-    <div class="flex bg-[url('/paper.png')] h-30 bg-cover px-4 *:text-8xl *:font-punk">
-      <h1 class="text-punk-red">I</h1>
-      <h1 class="text-punk-orange">m</h1>
-      <h1 class="text-punk-yellow">a</h1>
-      <h1 class="text-punk-blue">g</h1>
-      <h1 class="text-punk-black">e</h1>
-      <h1 class="">&nbsp;</h1>
-      <h1 class="text-punk-orange">L</h1>
-      <h1 class="text-punk-yellow">i</h1>
-      <h1 class="text-punk-red">b</h1>
-      <h1 class="text-punk-blue">r</h1>
-      <h1 class="text-punk-orange">a</h1>
-      <h1 class="text-punk-red">r</h1>
-      <h1 class="text-punk-yellow">y</h1>
+<div
+  class="flex flex-col h-screen w-full bg-cover bg-center bg-[url('/halftone.png')] bg-blend-lighten bg-gray-400 relative overflow-x-hidden overflow-y-hidden"
+>
+  <div class="flex h-48 w-full justify-center pt-15">
+    <div class="flex justify-center h-30 w-[60%] px-4">
+      <div
+        class="bg-no-repeat bg-[url('/ImageLibrary.svg')] bg-contain h-30 w-[70%] bg-center"
+      ></div>
     </div>
   </div>
   <!-- Header -->
@@ -21,8 +13,28 @@
     <div class=""><app-login></app-login></div>
   </div>
   <!-- Login -->
-  <div class="relative"></div>
+  <div class="absolute w-[25%] h-20 *:absolute">
+    <img src="/Stamp5.png" alt="" class="left-10 w-50" />
+    <img src="/Stamp1.png" alt="" class="top-55 -left-10 w-50" />
+    <img src="/Stamp3.png" alt="" class="top-60 left-50 w-40" />
+    <img src="/Stamp4.png" alt="" class="top-120 left-25 w-50" />
+    <img src="/Stamp7.png" alt="" class="top-135 left-50 w-50" />
+  </div>
   <!-- Left Pictures -->
-  <div class="relative"></div>
+  <div class="absolute w-[25%] h-20 *:absolute right-0">
+    <img src="/Stamp6.png" alt="" class="top-20 -right-10 w-50" />
+    <img src="/Stamp11.png" alt="" class="top-5 right-20 w-50" />
+    <img src="/Stamp9.png" alt="" class="top-65 right-60 w-40" />
+    <img src="/Stamp10.png" alt="" class="top-75 right-5 w-50" />
+    <img src="/Stamp8.png" alt="" class="top-135 right-50 w-60" />
+    <img src="/Stamp2.png" alt="" class="top-135 -right-20 w-50" />
+  </div>
   <!-- Right Pictures -->
+  <div class="*:absolute bottom-0 *:rounded-full *:h-200 *:w-200 *:-bottom-175">
+    <div class="bg-punk-red/50 left-[-15%]"></div>
+    <div class="bg-punk-orange/50 left-[10%]"></div>
+    <div class="bg-punk-blue/50 right-[10%]"></div>
+    <div class="bg-punk-yellow/50 right-[-15%]"></div>
+  </div>
+  <!-- Circles -->
 </div>

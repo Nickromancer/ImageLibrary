@@ -1,4 +1,4 @@
-<div class="gallery">
+<div class="grid grid-cols-6">
   @for (image of images(); track image.id) {
     <div class="image-card">
       <img [src]="image.imageUrl" [alt]="image.name" height="300" />
