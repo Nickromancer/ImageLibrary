@@ -10,9 +10,11 @@ import { Image } from '../models/image.model';
   templateUrl: './image-list.component.html',
 })
 export class ImageListComponent implements OnInit {
-  images = signal<Array<Image & { imageUrl: string }>>([]);
+  images = signal<Array<Image & { imageUrl: string } & { height: number }>>([]);
   loading = signal(true);
   error: string | null = null;
+
+  imageSizes = [250, 275, 300, 325, 350];
 
   constructor(public imageService: ImageService) {}
 
@@ -23,6 +25,7 @@ export class ImageListComponent implements OnInit {
           data.map((image) => ({
             ...image,
             imageUrl: this.toImageUrl(image.imageData, image.contentType),
+            height: Math.floor(Math.random() * (400 - 150 + 1)) + 150,
           })),
         );
         console.log(this.images);
@@ -53,5 +56,9 @@ export class ImageListComponent implements OnInit {
     }
 
     return `data:${contentType};base64,${btoa(binary)}`;
+  }
+
+  randomSize(): number {
+    return this.imageSizes[Math.ceil(this.imageSizes.length * Math.random())];
   }
 }
