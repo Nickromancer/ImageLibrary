@@ -4,17 +4,19 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use 'tailwindcss';
+
 @use '@angular/material' as mat;
+@use './theme-colors' as my-theme;
 
 html {
   height: 100%;
   @include mat.theme(
     (
       color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
+        primary: my-theme.$primary-palette,
+        tertiary: my-theme.$tertiary-palette,
       ),
-      typography: Roboto,
+      typography: Helvetica,
       density: 0,
     )
   );

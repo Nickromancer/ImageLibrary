@@ -21,14 +21,20 @@
       <button matFab="filled">
         <mat-icon>settings</mat-icon>
       </button>
+      <button matButton="elevated" (click)="openBottomSheet()">Open file</button>
     </div>
     <div class="absolute left-25 bottom-5">
-      <button matFab="filled">
+      <button matFab="filled" class="fill-amber-200">
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
     <!-- Bottom left -->
-    <div class="absolute bottom-5 left-1/2 -mx-50 w-100 h-10 bg-gray-700 rounded-full"></div>
+    <div class="absolute bottom-0 left-1/2 -mx-50">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Search for..." value="" />
+      </mat-form-field>
+      <!--       <input matInput placeholder="Ex. Pizza" class="w-100 h-10 rounded-full" /> -->
+    </div>
     <!-- Bottom -->
     <div class="absolute right-5 bottom-5">
       <button matFab="filled">
