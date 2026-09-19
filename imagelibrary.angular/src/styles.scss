@@ -8,6 +8,12 @@
 @use '@angular/material' as mat;
 @use './theme-colors' as my-theme;
 
+@include mat.divider-overrides(
+  (
+    width: 2,
+  )
+);
+
 html {
   height: 100%;
   @include mat.theme(

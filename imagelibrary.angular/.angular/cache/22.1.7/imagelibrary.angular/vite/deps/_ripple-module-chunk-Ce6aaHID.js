@@ -1,9 +1,10 @@
 import { Dc as Injector, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, Wi as setClassMetadata, cn as Component, no as ɵɵdefineDirective, qn as NgModule, ro as ɵɵdefineNgModule, sl as inject, to as ɵɵdefineComponent, wn as Directive, xa as ɵɵclassProp } from "./core-CVHS-hD8.js";
+import { r as Platform, t as coerceElement } from "./_element-chunk-DcF6XJbO.js";
 import { t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { i as Platform, r as _CdkPrivateStyleLoader, t as coerceElement } from "./_element-chunk-C0UHEuvq.js";
-import { f as normalizePassiveListenerOptions, g as isFakeTouchstartFromScreenReader, h as isFakeMousedownFromScreenReader, p as _getEventTarget, t as _animationsDisabled } from "./_animation-chunk-Clj_fr3p.js";
+import { f as normalizePassiveListenerOptions, g as isFakeTouchstartFromScreenReader, h as isFakeMousedownFromScreenReader, p as _getEventTarget, t as _animationsDisabled } from "./_animation-chunk-DRH3F-gu.js";
+import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import "./private-CSMSo6mO.js";
-import "./platform-BA4MMoK8.js";
+import "./platform-DUvAx4Dz.js";
 //#region node_modules/@angular/material/fesm2022/_ripple-chunk.mjs
 var RippleState;
 (function(RippleState) {
@@ -521,4 +522,4 @@ var MatRippleModule = class MatRippleModule {
 	}], null, null);
 })();
 //#endregion
-export { defaultRippleAnimationConfig as a, RippleRenderer as i, _StructuralStylesLoader as n, MAT_RIPPLE_GLOBAL_OPTIONS as r, MatRippleModule as t };
+export { RippleRenderer as a, MatRipple as i, _StructuralStylesLoader as n, defaultRippleAnimationConfig as o, MAT_RIPPLE_GLOBAL_OPTIONS as r, MatRippleModule as t };

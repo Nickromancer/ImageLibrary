@@ -1,109 +1,145 @@
 {
-  "hash": "0372384e",
-  "configHash": "74741297",
+  "hash": "1c39f266",
+  "configHash": "f2c3ccb2",
   "lockfileHash": "1492a4dd",
-  "browserHash": "7a12e26b",
+  "browserHash": "5d3c006e",
   "optimized": {
     "@angular/cdk/bidi": {
       "src": "../../../../../../node_modules/@angular/cdk/fesm2022/bidi.mjs",
       "file": "@angular_cdk_bidi.js",
-      "fileHash": "31e99144",
+      "fileHash": "3d4f58c6",
+      "needsInterop": false
+    },
+    "@angular/cdk/scrolling": {
+      "src": "../../../../../../node_modules/@angular/cdk/fesm2022/scrolling.mjs",
+      "file": "@angular_cdk_scrolling.js",
+      "fileHash": "ecdfb161",
       "needsInterop": false
     },
     "@angular/cdk/text-field": {
       "src": "../../../../../../node_modules/@angular/cdk/fesm2022/text-field.mjs",
       "file": "@angular_cdk_text-field.js",
-      "fileHash": "10494317",
+      "fileHash": "eed223dd",
       "needsInterop": false
     },
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "329620bc",
+      "fileHash": "d730e533",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "ab4aa7e0",
+      "fileHash": "58facfb7",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "5ac4bd4f",
+      "fileHash": "bf1a4eb5",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "2fa86b93",
+      "fileHash": "d5e14fdd",
+      "needsInterop": false
+    },
+    "@angular/material/autocomplete": {
+      "src": "../../../../../../node_modules/@angular/material/fesm2022/autocomplete.mjs",
+      "file": "@angular_material_autocomplete.js",
+      "fileHash": "5fbf84ee",
       "needsInterop": false
     },
     "@angular/material/bottom-sheet": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/bottom-sheet.mjs",
       "file": "@angular_material_bottom-sheet.js",
-      "fileHash": "12925cbb",
+      "fileHash": "382d30ca",
       "needsInterop": false
     },
     "@angular/material/button": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/button.mjs",
       "file": "@angular_material_button.js",
-      "fileHash": "7fc2196b",
+      "fileHash": "14546213",
+      "needsInterop": false
+    },
+    "@angular/material/divider": {
+      "src": "../../../../../../node_modules/@angular/material/fesm2022/divider.mjs",
+      "file": "@angular_material_divider.js",
+      "fileHash": "c073d0b3",
+      "needsInterop": false
+    },
+    "@angular/material/form-field": {
+      "src": "../../../../../../node_modules/@angular/material/fesm2022/form-field.mjs",
+      "file": "@angular_material_form-field.js",
+      "fileHash": "fd1fbdaa",
       "needsInterop": false
     },
     "@angular/material/icon": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/icon.mjs",
       "file": "@angular_material_icon.js",
-      "fileHash": "32c9a08b",
+      "fileHash": "67fc4f3e",
       "needsInterop": false
     },
     "@angular/material/input": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/input.mjs",
       "file": "@angular_material_input.js",
-      "fileHash": "8fe584ff",
+      "fileHash": "fbdec93e",
       "needsInterop": false
     },
     "@angular/material/list": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/list.mjs",
       "file": "@angular_material_list.js",
-      "fileHash": "d34e29e3",
+      "fileHash": "433a7252",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "365f8cef",
+      "fileHash": "f7ebc118",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "4fdce9b6",
+      "fileHash": "96e09991",
       "needsInterop": false
     },
     "rxjs": {
       "src": "../../../../../../node_modules/rxjs/dist/esm5/index.js",
       "file": "rxjs.js",
-      "fileHash": "bf30c7a4",
+      "fileHash": "3b9d7fd6",
       "needsInterop": false
     }
   },
   "chunks": {
-    "_animation-chunk-Clj_fr3p": {
-      "file": "_animation-chunk-Clj_fr3p.js",
+    "_animation-chunk-DRH3F-gu": {
+      "file": "_animation-chunk-DRH3F-gu.js",
       "isDynamicEntry": false
     },
-    "_element-chunk-C0UHEuvq": {
-      "file": "_element-chunk-C0UHEuvq.js",
+    "_element-chunk-DcF6XJbO": {
+      "file": "_element-chunk-DcF6XJbO.js",
+      "isDynamicEntry": false
+    },
+    "_form-field-chunk-ByDamWPp": {
+      "file": "_form-field-chunk-ByDamWPp.js",
       "isDynamicEntry": false
     },
     "_id-generator-chunk-C7F9aB7K": {
       "file": "_id-generator-chunk-C7F9aB7K.js",
       "isDynamicEntry": false
     },
-    "_ripple-module-chunk-Dd_le_JT": {
-      "file": "_ripple-module-chunk-Dd_le_JT.js",
+    "_pseudo-checkbox-module-chunk-AXLgOfoG": {
+      "file": "_pseudo-checkbox-module-chunk-AXLgOfoG.js",
+      "isDynamicEntry": false
+    },
+    "_ripple-module-chunk-Ce6aaHID": {
+      "file": "_ripple-module-chunk-Ce6aaHID.js",
+      "isDynamicEntry": false
+    },
+    "_style-loader-chunk-CvMh5ar0": {
+      "file": "_style-loader-chunk-CvMh5ar0.js",
       "isDynamicEntry": false
     },
     "_xhr-chunk-DNfG8hNt": {
@@ -138,8 +174,12 @@
       "file": "keycodes-BvDTxKgo.js",
       "isDynamicEntry": false
     },
-    "platform-BA4MMoK8": {
-      "file": "platform-BA4MMoK8.js",
+    "overlay-DiPgXHWU": {
+      "file": "overlay-DiPgXHWU.js",
+      "isDynamicEntry": false
+    },
+    "platform-DUvAx4Dz": {
+      "file": "platform-DUvAx4Dz.js",
       "isDynamicEntry": false
     },
     "platform-browser-BiN1Nv-Q": {
@@ -148,6 +188,10 @@
     },
     "private-CSMSo6mO": {
       "file": "private-CSMSo6mO.js",
+      "isDynamicEntry": false
+    },
+    "scrolling-CqcNghO1": {
+      "file": "scrolling-CqcNghO1.js",
       "isDynamicEntry": false
     }
   }
