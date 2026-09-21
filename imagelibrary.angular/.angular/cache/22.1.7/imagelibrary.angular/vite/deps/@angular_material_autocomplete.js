@@ -1,28 +1,20 @@
+import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { $n as Output, Ca as ɵɵconditional, Dc as Injector, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ea as ɵɵcontentQuery, Ec as InjectionToken, En as ElementRef, Er as ViewContainerRef, Fc as NgZone, In as Input, Ks as ɵɵtextInterpolate1, Mr as afterNextRender, O as booleanAttribute, S as ViewChild, Ta as ɵɵconditionalCreate, Wi as setClassMetadata, Ws as ɵɵtext, Xo as ɵɵloadQuery, Yo as ɵɵlistener, Zo as ɵɵnextContext, a as ContentChildren, as as ɵɵprojectionDef, ba as ɵɵclassMap, bc as EventEmitter, bo as ɵɵelementEnd, cn as Component, da as ɵɵadvance, do as ɵɵdomElementEnd, fo as ɵɵdomElementStart, go as ɵɵelement, ho as ɵɵdomTemplate, ir as Renderer2, is as ɵɵprojection, la as ɵɵNgOnChangesFeature, mo as ɵɵdomProperty, no as ɵɵdefineDirective, os as ɵɵproperty, qn as NgModule, r as ChangeDetectorRef, rl as forwardRef, ro as ɵɵdefineNgModule, sc as ɵɵviewQuery, sl as inject, to as ɵɵdefineComponent, ua as ɵɵProvidersFeature, ul as isSignal, vc as EnvironmentInjector, vr as TemplateRef, vs as ɵɵqueryRefresh, wn as Directive, xa as ɵɵclassProp, xl as signal, xo as ɵɵelementStart, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
 import { Ct as take, Qn as Subject, Xt as filter, b as switchMap, jn as of, m as tap, rr as Observable, tn as merge, un as defer, ur as Subscription, vn as map, x as startWith, yt as delay } from "./esm5-ChK3bs0s.js";
+import { NG_VALUE_ACCESSOR } from "./@angular_forms.js";
+import { D as _getEventTarget, O as _getFocusedElementPierceShadowDom, g as BreakpointObserver, t as _IdGenerator, v as coerceArray } from "./_id-generator-chunk-E6t5Ofuz.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
-import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { _ as ViewportRuler, i as CdkScrollableModule } from "./scrolling-CqcNghO1.js";
-import { l as BreakpointObserver, m as _getFocusedElementPierceShadowDom, n as Breakpoints, p as _getEventTarget, t as _animationsDisabled, u as coerceArray } from "./_animation-chunk-DRH3F-gu.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import { t as _VisuallyHiddenLoader } from "./private-CSMSo6mO.js";
-import { n as MatPseudoCheckbox, r as ListKeyManager, t as MatPseudoCheckboxModule } from "./_pseudo-checkbox-module-chunk-AXLgOfoG.js";
-import { t as hasModifierKey } from "./keycodes-BvDTxKgo.js";
-import { t as _IdGenerator } from "./_id-generator-chunk-C7F9aB7K.js";
-import "./platform-DUvAx4Dz.js";
-import { c as createOverlayRef, l as createRepositionScrollStrategy, m as TemplatePortal, o as createFlexibleConnectedPositionStrategy, r as OverlayModule, t as OverlayConfig } from "./overlay-DiPgXHWU.js";
-import { i as MatRipple, n as _StructuralStylesLoader, t as MatRippleModule } from "./_ripple-module-chunk-Ce6aaHID.js";
-import { NG_VALUE_ACCESSOR } from "./@angular_forms.js";
-import { n as MAT_FORM_FIELD } from "./_form-field-chunk-ByDamWPp.js";
-//#region node_modules/@angular/cdk/fesm2022/_activedescendant-key-manager-chunk.mjs
-var ActiveDescendantKeyManager = class extends ListKeyManager {
-	setActiveItem(index) {
-		if (this.activeItem) this.activeItem.setInactiveStyles();
-		super.setActiveItem(index);
-		if (this.activeItem) this.activeItem.setActiveStyles();
-	}
-};
-//#endregion
+import { m as ActiveDescendantKeyManager } from "./a11y-POVGnR8A.js";
+import { o as _StructuralStylesLoader, r as MatRipple, t as MatRippleModule } from "./_ripple-module-chunk-WhU1p8fX.js";
+import { _ as ViewportRuler, i as CdkScrollableModule } from "./scrolling-CqcNghO1.js";
+import { c as createOverlayRef, l as createRepositionScrollStrategy, m as TemplatePortal, o as createFlexibleConnectedPositionStrategy, r as OverlayModule, t as OverlayConfig } from "./overlay-DaE2syVm.js";
+import "./platform-CI1lutth.js";
+import { n as Breakpoints, t as _animationsDisabled } from "./_animation-chunk-BhwXhJj-.js";
+import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
+import { n as MAT_FORM_FIELD } from "./_form-field-chunk-B80a-gBn.js";
+import { n as MatPseudoCheckbox, t as MatPseudoCheckboxModule } from "./_pseudo-checkbox-module-chunk-DZ6IoNMm.js";
 //#region node_modules/@angular/material/fesm2022/_option-chunk.mjs
 var _c0$1 = ["*", [["mat-option"], ["ng-container"]]];
 var _c1$1 = ["*", "mat-option, ng-container"];

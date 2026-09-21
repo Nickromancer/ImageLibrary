@@ -13,9 +13,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormControl } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
+import { from, map, Observable, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChipsAutocompleteExample } from '../tag-chip-grid-component/tag-chip-grid-component';
+import { FileDropZoneComponent } from '../components/file-drop-zone.component';
 
 @Component({
   imports: [
@@ -51,9 +53,10 @@ export class GalleryComponent {
     MatLabel,
     MatInput,
     MatAutocompleteModule,
-    AsyncPipe,
     MatFormFieldModule,
     ReactiveFormsModule,
+    ChipsAutocompleteExample,
+    FileDropZoneComponent,
   ],
 })
 export class BottomSheetOverviewExampleSheet {
@@ -74,6 +77,15 @@ export class BottomSheetOverviewExampleSheet {
       startWith(''),
       map((value) => this._filter(value || '')),
     );
+  }
+
+  onFilesSelected(files: File[]): void {
+    // e.g. upload to your backend
+    console.log('Accepted files:', files);
+  }
+
+  onFilesRejected(files: File[]): void {
+    console.warn('Rejected (not an image):', files);
   }
 
   private _filter(value: string): string[] {

@@ -1,0 +1,192 @@
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.drop-zone {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 320px;
+  padding: 1em;
+  border: 2px dashed #cccccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.drop-zone--active {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.6em;
+  width: 100%;
+  height: 100%;
+}
+
+/* When there are no images yet, the grid holds only the (full-size) add
+   tile, so center it like the original single-box drop zone. */
+.drop-zone--empty .drop-zone__grid {
+  height: 100%;
+  min-height: 168px;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-zone__tile {
+  position: relative;
+  flex: 0 0 90px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background: #f3f4f6;
+}
+
+.drop-zone__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.drop-zone__icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+
+.drop-zone__name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.3em 0.4em;
+  font-size: 0.7em;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.drop-zone__tile:hover .drop-zone__name {
+  opacity: 1;
+}
+
+.drop-zone__remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 0.9em;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.drop-zone__tile:hover .drop-zone__remove {
+  opacity: 1;
+}
+
+.drop-zone__remove:hover {
+  background: #ef4444;
+}
+
+/* Persistent tile inviting more drops/clicks. Full-size + centered text
+   when the zone is empty; shrinks to match the thumbnails once files exist. */
+.drop-zone__add-tile {
+  flex: 1 1 100%;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  color: slategray;
+  text-align: center;
+  padding: 1em;
+}
+
+.drop-zone__add-tile--compact {
+  flex: 0 0 90px;
+  min-height: 0;
+  height: 90px;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  gap: 0.15em;
+}
+
+.drop-zone__add-icon {
+  font-size: 1.6em;
+  line-height: 1;
+}
+
+.drop-zone__add-tile--compact .drop-zone__add-icon {
+  font-size: 1.2em;
+}
+
+.drop-zone__add-text {
+  font-size: 0.9em;
+}
+
+.drop-zone__add-tile--compact .drop-zone__add-text {
+  font-size: 0.65em;
+}
+
+.preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 0.6em;
+}
+
+.preview-count {
+  font-size: 0.9em;
+  color: #6b7280;
+}
+
+.clear-btn {
+  padding: 0.4em 0.9em;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.clear-btn:hover {
+  background: #f3f4f6;
+}

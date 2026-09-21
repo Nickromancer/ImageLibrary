@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TagChipGridComponenet } from './tag-chip-grid-component';
+import { ChipsAutocompleteExample } from './tag-chip-grid-component';
 
 describe('TagChipGridComponenet', () => {
-  let component: TagChipGridComponenet;
-  let fixture: ComponentFixture<TagChipGridComponenet>;
+  let component: ChipsAutocompleteExample;
+  let fixture: ComponentFixture<ChipsAutocompleteExample>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TagChipGridComponenet],
+      imports: [ChipsAutocompleteExample],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TagChipGridComponenet);
+    fixture = TestBed.createComponent(ChipsAutocompleteExample);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

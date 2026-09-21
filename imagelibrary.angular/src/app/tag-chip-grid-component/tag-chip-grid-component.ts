@@ -14,9 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
  * @title Chips Autocomplete
  */
 @Component({
-  selector: 'chips-autocomplete-example',
+  selector: 'tag-chip-grid-component',
   templateUrl: 'tag-chip-grid-component.html',
-  styleUrl: 'tag-chip-grid-component.css',
   // Make sure to import `MatAutocompleteModule` before `MatChipsModule` to prevent adding typed
   // text when autocomplete option is selected via keyboard).
   imports: [MatFormFieldModule, MatAutocompleteModule, MatChipsModule, MatIconModule, FormsModule],

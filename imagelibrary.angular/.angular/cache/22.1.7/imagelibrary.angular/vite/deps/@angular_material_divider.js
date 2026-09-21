@@ -1,6 +1,6 @@
 import { Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, In as Input, Wi as setClassMetadata, cn as Component, qn as NgModule, ro as ɵɵdefineNgModule, to as ɵɵdefineComponent, xa as ɵɵclassProp, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
-import { t as BidiModule } from "./bidi-BIOWbFqv.js";
 import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
+import { t as BidiModule } from "./bidi-BIOWbFqv.js";
 //#region node_modules/@angular/material/fesm2022/divider.mjs
 var MatDivider = class MatDivider {
 	get vertical() {

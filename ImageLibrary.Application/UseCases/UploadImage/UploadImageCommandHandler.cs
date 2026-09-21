@@ -10,11 +10,11 @@ using ImageLibrary.Infrastructure.Persistence;
 
 namespace ImageLibrary.Application.UseCases.UploadImage
 {
-    public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand, Image>
+    public class UploadÍmageCommandHandler : IRequestHandler<UploadImageCommand, Image>
     {
         private readonly IImageRepository _data;
 
-        public UploadImageCommandHandler(IImageRepository data)
+        public UploadÍmageCommandHandler(IImageRepository data)
         {
             _data = data;
         }

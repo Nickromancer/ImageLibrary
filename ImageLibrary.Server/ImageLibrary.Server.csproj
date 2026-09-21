@@ -22,12 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <ProjectReference Include="..\ImageLibrary.Application\ImageLibrary.Application.csproj" />
-    <ProjectReference Include="..\imagelibrary.client\imagelibrary.client.esproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
+        <ProjectReference Include="..\ImageLibrary.Application\ImageLibrary.Application.csproj" />
     <ProjectReference Include="..\ImageLibrary.Infrastructure\ImageLibrary.Infrastructure.csproj" />
     <ProjectReference Include="..\ImageLibrary.Presentation\ImageLibrary.Presentation.csproj" />
+    <ProjectReference Include="..\ImageLibrary.Angular\ImageLibrary.Angular.csproj" />
   </ItemGroup>
 
 </Project>

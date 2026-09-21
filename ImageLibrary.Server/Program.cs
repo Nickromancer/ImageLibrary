@@ -74,6 +74,7 @@ builder.Services.AddMediatR(cfg =>
 });
 
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString!));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

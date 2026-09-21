@@ -1,31 +1,20 @@
+import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { $n as Output, Ca as ɵɵconditional, Dc as Injector, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ea as ɵɵcontentQuery, Ec as InjectionToken, En as ElementRef, Fc as NgZone, Hs as ɵɵtemplate, In as Input, Ml as ɵɵnamespaceHTML, Oo as ɵɵgetInheritedFactory, Pl as ɵɵnamespaceSVG, S as ViewChild, Ta as ɵɵconditionalCreate, Us as ɵɵtemplateRefExtractor, Wi as setClassMetadata, Xo as ɵɵloadQuery, Yo as ɵɵlistener, Zo as ɵɵnextContext, a as ContentChildren, as as ɵɵprojectionDef, bc as EventEmitter, bo as ɵɵelementEnd, bs as ɵɵreference, ca as ɵɵInheritDefinitionFeature, cn as Component, da as ɵɵadvance, go as ɵɵelement, ir as Renderer2, is as ɵɵprojection, la as ɵɵNgOnChangesFeature, no as ɵɵdefineDirective, os as ɵɵproperty, qn as NgModule, r as ChangeDetectorRef, rl as forwardRef, ro as ɵɵdefineNgModule, sc as ɵɵviewQuery, sl as inject, to as ɵɵdefineComponent, ua as ɵɵProvidersFeature, vs as ɵɵqueryRefresh, wn as Directive, xa as ɵɵclassProp, xl as signal, xo as ɵɵelementStart, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
 import { Qn as Subject, g as takeUntil, tn as merge, ur as Subscription } from "./esm5-ChK3bs0s.js";
 import { Y as NgTemplateOutlet } from "./common-BTPD6OCC.js";
+import { NG_VALUE_ACCESSOR } from "./@angular_forms.js";
+import { O as _getFocusedElementPierceShadowDom, h as ObserversModule, m as CdkObserveContent } from "./_id-generator-chunk-E6t5Ofuz.js";
 import { n as coerceNumberProperty, r as Platform } from "./_element-chunk-DcF6XJbO.js";
-import { t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { c as ObserversModule, m as _getFocusedElementPierceShadowDom, s as CdkObserveContent, t as _animationsDisabled } from "./_animation-chunk-DRH3F-gu.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import "./private-CSMSo6mO.js";
-import { r as ListKeyManager, t as MatPseudoCheckboxModule } from "./_pseudo-checkbox-module-chunk-AXLgOfoG.js";
-import { t as hasModifierKey } from "./keycodes-BvDTxKgo.js";
-import "./platform-DUvAx4Dz.js";
+import { p as FocusKeyManager } from "./a11y-POVGnR8A.js";
+import { i as RippleRenderer, n as MAT_RIPPLE_GLOBAL_OPTIONS, o as _StructuralStylesLoader, t as MatRippleModule } from "./_ripple-module-chunk-WhU1p8fX.js";
+import "./platform-CI1lutth.js";
 import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
-import { a as RippleRenderer, n as _StructuralStylesLoader, r as MAT_RIPPLE_GLOBAL_OPTIONS, t as MatRippleModule } from "./_ripple-module-chunk-Ce6aaHID.js";
-import { NG_VALUE_ACCESSOR } from "./@angular_forms.js";
+import { t as _animationsDisabled } from "./_animation-chunk-BhwXhJj-.js";
+import { t as BidiModule } from "./bidi-BIOWbFqv.js";
+import { t as MatPseudoCheckboxModule } from "./_pseudo-checkbox-module-chunk-DZ6IoNMm.js";
 import { MatDivider, MatDividerModule } from "./@angular_material_divider.js";
-//#region node_modules/@angular/cdk/fesm2022/_focus-key-manager-chunk.mjs
-var FocusKeyManager = class extends ListKeyManager {
-	_origin = "program";
-	setFocusOrigin(origin) {
-		this._origin = origin;
-		return this;
-	}
-	setActiveItem(item) {
-		super.setActiveItem(item);
-		if (this.activeItem) this.activeItem.focus(this._origin);
-	}
-};
-//#endregion
 //#region node_modules/@angular/cdk/fesm2022/_selection-model-chunk.mjs
 var SelectionModel = class {
 	_multiple;

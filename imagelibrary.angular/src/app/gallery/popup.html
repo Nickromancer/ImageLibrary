@@ -1,12 +1,22 @@
 <div class="h-150 w-200 flex p-5 *:rounded-4xl gap-10">
   <div class="w-1/2 h-full flex flex-col gap-5">
-    <div class="w-full h-full bg-red-400"></div>
+    <div class="w-full h-full">
+      <app-file-drop-zone
+        accept="image/*"
+        acceptPrefix="image/"
+        [multiple]="true"
+        (filesSelected)="onFilesSelected($event)"
+        (filesRejected)="onFilesRejected($event)"
+      >
+        <span dropZoneLabel>Drop images here, or click to upload.</span>
+      </app-file-drop-zone>
+    </div>
     <mat-divider></mat-divider>
     <div class="h-50 w-full bg-green-300"></div>
     <!-- Tags -->
   </div>
   <!-- Picture Slot -->
-  <div class="h-full w-1/2 bg-amber-200 *:w-full flex flex-col gap-3">
+  <div class="h-full w-1/2 *:w-full flex flex-col gap-3">
     <mat-form-field>
       <mat-label>File Name</mat-label>
       <input matInput />
@@ -15,6 +25,7 @@
       <mat-label>Description</mat-label>
       <textarea rows="5" matInput></textarea>
     </mat-form-field>
+    <tag-chip-grid-component></tag-chip-grid-component>
   </div>
   <!-- Input Fields -->
 </div>

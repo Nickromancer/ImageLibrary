@@ -1,8 +1,11 @@
 ﻿using System.Reflection.Emit;
+using System.Reflection.Metadata;
 using ImageLibrary.Domain.Entities;
 using ImageLibrary.Server.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ImageLibrary.Server.Infrastructure.Persistence
 {
@@ -14,20 +17,23 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
         }
 
         public DbSet<Image> Images{ get; set; }
+        public DbSet<Tag> Tags{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Image>().HasKey(p => p.Id);
+            modelBuilder.Entity<Tag>()
+                .HasIndex(tag => tag.Name)
+                .IsUnique();
 
-            var placeholderPng = Convert.FromBase64String(
-                "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=");
+            //var placeholderPng = Convert.FromBase64String("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=");
             // Seed data
-           modelBuilder.Entity<Image>().HasData(
-                new Image() { Name = "CuteCat", Description = "Picture of Cat", ImageData = placeholderPng, ContentType = "image/png", Id = new Guid("11111111-1111-1111-1111-111111111111") },
-                new Image() { Name = "Doggy", Description = "Picture of Dog", ImageData = placeholderPng, ContentType = "image/png", Id = new Guid("22222222-2222-2222-2222-222222222222") }
-            );
+            /* modelBuilder.Entity<Image>().HasData(
+                 new Image() { Name = "CuteCat", Description = "Picture of Cat", ImageData = placeholderPng, ContentType = "image/png", Id = new Guid("11111111-1111-1111-1111-111111111111") },
+                 new Image() { Name = "Doggy", Description = "Picture of Dog", ImageData = placeholderPng, ContentType = "image/png", Id = new Guid("22222222-2222-2222-2222-222222222222") }
+             ); */
         }
     }
 }

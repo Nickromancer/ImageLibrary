@@ -1,0 +1,50 @@
+<label
+  class="drop-zone"
+  [class.drop-zone--active]="isDragOver()"
+  [class.drop-zone--empty]="previews().length === 0"
+>
+  <div class="drop-zone__grid">
+    @for (item of previews(); track item.file; let i = $index) {
+      <div class="drop-zone__tile">
+        @if (item.url) {
+          <img [src]="item.url" [alt]="item.file.name" class="drop-zone__thumb" />
+        } @else {
+          <span class="drop-zone__icon">📄</span>
+        }
+        <button
+          type="button"
+          class="drop-zone__remove"
+          (click)="onRemoveClick($event, i)"
+          [attr.aria-label]="'Remove ' + item.file.name"
+        >
+          ×
+        </button>
+        <span class="drop-zone__name">{{ item.file.name }}</span>
+      </div>
+    }
+
+    <div class="drop-zone__add-tile" [class.drop-zone__add-tile--compact]="previews().length > 0">
+      <span class="drop-zone__add-icon">+</span>
+      <span class="drop-zone__add-text">
+        {{ previews().length === 0 ? label : addMoreLabel }}
+      </span>
+    </div>
+  </div>
+
+  <input
+    type="file"
+    class="drop-zone__input"
+    [attr.accept]="accept || null"
+    [multiple]="multiple"
+    (change)="onInputChange($event)"
+  />
+</label>
+
+@if (showPreview && previews().length > 0) {
+  <div class="preview-footer">
+    <span class="preview-count"
+      >{{ previews().length }} image{{ previews().length === 1 ? '' : 's' }}</span
+    >
+    <button type="button" class="clear-btn" (click)="clear()">Clear all</button>
+  </div>
+}
