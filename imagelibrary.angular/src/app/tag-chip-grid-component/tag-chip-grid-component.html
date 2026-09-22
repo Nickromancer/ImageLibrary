@@ -1,20 +1,20 @@
 <mat-form-field class="w-full">
   <mat-label>Tags</mat-label>
   <mat-chip-grid #chipGrid aria-label="Fruit selection">
-    @for (fruit of fruits(); track $index) {
-      <mat-chip-row (removed)="remove(fruit)">
-        {{ fruit }}
-        <button matChipRemove [attr.aria-label]="'remove ' + fruits">
+    @for (tag of tags(); track $index) {
+      <mat-chip-row (removed)="remove(tag)">
+        {{ tag }}
+        <button matChipRemove [attr.aria-label]="'remove ' + tags">
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip-row>
     }
   </mat-chip-grid>
   <input
-    name="currentFruit"
+    name="currentTag"
     placeholder="New Tag..."
-    #fruitInput
-    [(ngModel)]="currentFruit"
+    #tagInput
+    [(ngModel)]="currentTag"
     [matChipInputFor]="chipGrid"
     [matAutocomplete]="auto"
     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -22,10 +22,10 @@
   />
   <mat-autocomplete
     #auto="matAutocomplete"
-    (optionSelected)="selected($event); fruitInput.value = ''"
+    (optionSelected)="selected($event); tagInput.value = ''"
   >
-    @for (fruit of filteredFruits(); track fruit) {
-      <mat-option [value]="fruit">{{ fruit }}</mat-option>
+    @for (tag of filteredTags(); track tag) {
+      <mat-option [value]="tag">{{ tag }}</mat-option>
     }
   </mat-autocomplete>
 </mat-form-field>

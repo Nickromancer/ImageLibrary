@@ -1,5 +1,5 @@
 import { Dl as ɵɵdefineInjector, Ec as InjectionToken, Wi as setClassMetadata, lc as ANIMATION_MODULE_TYPE, qn as NgModule, ro as ɵɵdefineNgModule, sl as inject } from "./core-CVHS-hD8.js";
-import { _ as MediaMatcher } from "./_id-generator-chunk-E6t5Ofuz.js";
+import { _ as MediaMatcher } from "./_id-generator-chunk-pTONyQgT.js";
 //#region node_modules/@angular/cdk/fesm2022/layout.mjs
 var LayoutModule = class LayoutModule {
 	static ɵfac = function LayoutModule_Factory(__ngFactoryType__) {

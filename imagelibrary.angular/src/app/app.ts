@@ -1,8 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ImageService } from './services/image.service';
-import { Image } from './models/image.model';
 
 @Component({
   imports: [RouterOutlet],

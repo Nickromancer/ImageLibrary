@@ -11,21 +11,21 @@
         <span dropZoneLabel>Drop images here, or click to upload.</span>
       </app-file-drop-zone>
     </div>
-    <mat-divider></mat-divider>
-    <div class="h-50 w-full bg-green-300"></div>
-    <!-- Tags -->
   </div>
   <!-- Picture Slot -->
   <div class="h-full w-1/2 *:w-full flex flex-col gap-3">
-    <mat-form-field>
-      <mat-label>File Name</mat-label>
-      <input matInput />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea rows="5" matInput></textarea>
-    </mat-form-field>
-    <tag-chip-grid-component></tag-chip-grid-component>
+    <form #f="ngForm" [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>File Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea rows="5" matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <tag-chip-grid-component></tag-chip-grid-component>
+      <app-checklist-component></app-checklist-component>
+    </form>
   </div>
   <!-- Input Fields -->
 </div>

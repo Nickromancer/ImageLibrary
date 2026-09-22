@@ -1,15 +1,16 @@
 import { Dl as ɵɵdefineInjector, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, O as booleanAttribute, Wi as setClassMetadata, Yo as ɵɵlistener, ir as Renderer2, la as ɵɵNgOnChangesFeature, mo as ɵɵdomProperty, no as ɵɵdefineDirective, qn as NgModule, ro as ɵɵdefineNgModule, sl as inject, tl as effect, ua as ɵɵProvidersFeature, ul as isSignal, wn as Directive, xa as ɵɵclassProp, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
 import { Qn as Subject } from "./esm5-ChK3bs0s.js";
-import { FormGroupDirective, NgControl, NgForm, Validators } from "./@angular_forms.js";
-import { t as _IdGenerator } from "./_id-generator-chunk-E6t5Ofuz.js";
+import { t as _IdGenerator } from "./_id-generator-chunk-pTONyQgT.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
+import { FormGroupDirective, NgControl, NgForm, Validators } from "./@angular_forms.js";
+import "./_animation-chunk-CFfcyi-3.js";
 import { t as getSupportedInputTypes } from "./platform-CI1lutth.js";
 import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
-import "./_animation-chunk-BhwXhJj-.js";
 import { t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { n as ErrorStateMatcher, r as FORM_FIELD, t as _ErrorStateTracker } from "./_error-state-chunk-C7rpGa96.js";
-import { c as MatFormFieldControl, d as MatPrefix, f as MatSuffix, l as MatHint, n as MAT_FORM_FIELD, o as MatError, s as MatFormField, u as MatLabel } from "./_form-field-chunk-B80a-gBn.js";
+import { r as FORM_FIELD } from "./signals-CANb_JIg.js";
 import { AutofillMonitor, TextFieldModule } from "./@angular_cdk_text-field.js";
+import { c as MatFormFieldControl, d as MatPrefix, f as MatSuffix, l as MatHint, n as MAT_FORM_FIELD, o as MatError, s as MatFormField, u as MatLabel } from "./_form-field-chunk-DfEMZ1G7.js";
+import { n as ErrorStateMatcher, t as _ErrorStateTracker } from "./_error-state-chunk-BT57_CyR.js";
 import { MatFormFieldModule } from "./@angular_material_form-field.js";
 //#region node_modules/@angular/material/fesm2022/_input-value-accessor-chunk.mjs
 var MAT_INPUT_VALUE_ACCESSOR = new InjectionToken("MAT_INPUT_VALUE_ACCESSOR");

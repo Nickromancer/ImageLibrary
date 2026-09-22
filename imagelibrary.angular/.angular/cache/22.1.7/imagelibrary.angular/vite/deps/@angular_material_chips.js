@@ -1,18 +1,20 @@
-import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { $n as Output, Ca as ɵɵconditional, Dc as Injector, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ea as ɵɵcontentQuery, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, Mr as afterNextRender, O as booleanAttribute, Oo as ɵɵgetInheritedFactory, Pl as ɵɵnamespaceSVG, S as ViewChild, Ta as ɵɵconditionalCreate, Wi as setClassMetadata, Xo as ɵɵloadQuery, Yo as ɵɵlistener, Zo as ɵɵnextContext, a as ContentChildren, as as ɵɵprojectionDef, ba as ɵɵclassMap, bc as EventEmitter, bo as ɵɵelementEnd, ca as ɵɵInheritDefinitionFeature, cn as Component, d as HOST_TAG_NAME, da as ɵɵadvance, do as ɵɵdomElementEnd, fo as ɵɵdomElementStart, go as ɵɵelement, i as ContentChild, ir as Renderer2, is as ɵɵprojection, la as ɵɵNgOnChangesFeature, mc as DOCUMENT, mo as ɵɵdomProperty, no as ɵɵdefineDirective, nr as QueryList, os as ɵɵproperty, qn as NgModule, r as ChangeDetectorRef, rl as forwardRef, ro as ɵɵdefineNgModule, rt as numberAttribute, sc as ɵɵviewQuery, sl as inject, to as ɵɵdefineComponent, ua as ɵɵProvidersFeature, vs as ɵɵqueryRefresh, wn as Directive, xa as ɵɵclassProp, xo as ɵɵelementStart, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
 import { Qn as Subject, b as switchMap, g as takeUntil, tn as merge, x as startWith } from "./esm5-ChK3bs0s.js";
-import { FormGroupDirective, NG_VALUE_ACCESSOR, NgControl, NgForm, Validators } from "./@angular_forms.js";
-import { t as _IdGenerator, x as FocusMonitor } from "./_id-generator-chunk-E6t5Ofuz.js";
+import { t as _IdGenerator, x as FocusMonitor } from "./_id-generator-chunk-pTONyQgT.js";
+import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import { t as _VisuallyHiddenLoader } from "./private-CSMSo6mO.js";
-import { p as FocusKeyManager } from "./a11y-POVGnR8A.js";
-import { n as MAT_RIPPLE_GLOBAL_OPTIONS, o as _StructuralStylesLoader, t as MatRippleModule } from "./_ripple-module-chunk-WhU1p8fX.js";
+import { p as FocusKeyManager } from "./a11y-Dn6gKnUX.js";
+import { FormGroupDirective, NG_VALUE_ACCESSOR, NgControl, NgForm, Validators } from "./@angular_forms.js";
+import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
+import { a as _StructuralStylesLoader, t as MAT_RIPPLE_GLOBAL_OPTIONS } from "./_ripple-chunk-CSaDqLmg.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-BhwXhJj-.js";
-import { t as MatRippleLoader } from "./_ripple-loader-chunk-BFF3wFru.js";
 import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { n as ErrorStateMatcher, r as FORM_FIELD, t as _ErrorStateTracker } from "./_error-state-chunk-C7rpGa96.js";
-import { c as MatFormFieldControl, n as MAT_FORM_FIELD } from "./_form-field-chunk-B80a-gBn.js";
+import { r as FORM_FIELD } from "./signals-CANb_JIg.js";
+import { c as MatFormFieldControl, n as MAT_FORM_FIELD } from "./_form-field-chunk-DfEMZ1G7.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-BG7wq9o1.js";
+import { t as MatRippleLoader } from "./_ripple-loader-chunk-B-K9W9W_.js";
+import { n as ErrorStateMatcher, t as _ErrorStateTracker } from "./_error-state-chunk-BT57_CyR.js";
 //#region node_modules/@angular/material/fesm2022/chips.mjs
 var _c0 = [
 	"*",

@@ -30,7 +30,8 @@ export interface PreviewFile {
  *   <app-file-drop-zone
  *     [accept]="'image/*'"
  *     [multiple]="true"
- *     (filesSelected)="onFiles($event)">
+ *     (
+ * )="onFiles($event)">
  *   </app-file-drop-zone>
  */
 @Component({
@@ -64,6 +65,7 @@ export class FileDropZoneComponent implements OnDestroy {
   readonly previews = signal<PreviewFile[]>([]);
 
   constructor(private readonly host: ElementRef<HTMLElement>) {}
+  selectedFiles = signal<File[] | null>(null);
 
   // ---- Drop zone (host element) listeners -------------------------------
 

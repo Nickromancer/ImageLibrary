@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChipsAutocomplete } from './tag-chip-grid-component';
+import { PopupSheetComponent } from './popup-sheet.component';
 
-describe('TagChipGridComponenet', () => {
-  let component: ChipsAutocomplete;
-  let fixture: ComponentFixture<ChipsAutocomplete>;
+describe('PopupSheetComponent', () => {
+  let component: PopupSheetComponent;
+  let fixture: ComponentFixture<PopupSheetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChipsAutocomplete],
+      imports: [PopupSheetComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ChipsAutocomplete);
+    fixture = TestBed.createComponent(PopupSheetComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

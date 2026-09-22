@@ -1,11 +1,11 @@
 import { A as contentChild, Bt as computed, Ca as ɵɵconditional, Da as ɵɵcontentQuerySignal, Dr as ViewEncapsulation, Ea as ɵɵcontentQuery, Ec as InjectionToken, En as ElementRef, Fc as NgZone, Gs as ɵɵtextInterpolate, Hs as ɵɵtemplate, In as Input, S as ViewChild, T as afterRenderEffect, Ta as ɵɵconditionalCreate, Us as ɵɵtemplateRefExtractor, Wi as setClassMetadata, Ws as ɵɵtext, Xo as ɵɵloadQuery, Yo as ɵɵlistener, Zo as ɵɵnextContext, _s as ɵɵqueryAdvance, a as ContentChildren, ao as ɵɵdefineService, ar as RendererFactory2, as as ɵɵprojectionDef, bo as ɵɵelementEnd, bs as ɵɵreference, cc as ɵɵviewQuerySignal, cn as Component, da as ɵɵadvance, do as ɵɵdomElementEnd, dr as Service, fo as ɵɵdomElementStart, go as ɵɵelement, gt as viewChild, i as ContentChild, ir as Renderer2, is as ɵɵprojection, mo as ɵɵdomProperty, no as ɵɵdefineDirective, os as ɵɵproperty, r as ChangeDetectorRef, rl as forwardRef, sc as ɵɵviewQuery, sl as inject, so as ɵɵdomElement, tl as effect, to as ɵɵdefineComponent, ua as ɵɵProvidersFeature, vs as ɵɵqueryRefresh, wn as Directive, xa as ɵɵclassProp, xl as signal, xo as ɵɵelementStart, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
 import { D as shareReplay, Qn as Subject, U as pairwise, Xt as filter, g as takeUntil, rr as Observable, tn as merge, ur as Subscription, vn as map, x as startWith } from "./esm5-ChK3bs0s.js";
+import { t as _IdGenerator } from "./_id-generator-chunk-pTONyQgT.js";
 import { Y as NgTemplateOutlet } from "./common-BTPD6OCC.js";
-import { t as _IdGenerator } from "./_id-generator-chunk-E6t5Ofuz.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
+import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
 import "./platform-CI1lutth.js";
 import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
-import { t as _animationsDisabled } from "./_animation-chunk-BhwXhJj-.js";
 import { i as Directionality } from "./bidi-BIOWbFqv.js";
 //#region node_modules/@angular/cdk/fesm2022/observers-private.mjs
 var loopLimitExceededErrorHandler = (e) => {
