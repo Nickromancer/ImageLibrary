@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ImageService } from '../services/image.service';
 import { TagService } from '../services/tag.service';
 import { Image } from '../models/image.model';
+import { MatAnchor } from '@angular/material/button';
 
 @Component({
   selector: 'app-popup',
@@ -30,6 +31,7 @@ import { Image } from '../models/image.model';
     FileDropZoneComponent,
     ChecklistComponent,
     FormsModule,
+    MatAnchor,
   ],
 })
 export class PopupSheetComponent {
@@ -41,21 +43,35 @@ export class PopupSheetComponent {
   images: File[] = [];
   newTags: string[] = [];
 
-  onSubmit() {
+  onSubmit(): void {
+    console.log('onSubmit fired, images:', this.images, 'form:', this.imageForm.value);
+
     if (this.images.length > 1) {
       this.images.forEach((image) => {
-        this.imageService.upload(image, image.name, '');
+        this.imageService.upload(image, image.name, '', image.type).subscribe({
+          next: (res) => console.log('Uploaded', res),
+          error: (err) => console.error('Upload failed', err),
+        });
       });
 
       this.newTags.forEach((tag) => {
-        this.tagService.upload(tag);
+        this.tagService.upload(tag).subscribe({
+          next: (res) => console.log('Tag uploaded', res),
+          error: (err) => console.error('Tag upload failed', err),
+        });
       });
     } else if (this.images.length == 1) {
-      this.imageService.upload(
-        this.images[0],
-        this.imageForm.value.name!,
-        this.imageForm.value.description!,
-      );
+      this.imageService
+        .upload(
+          this.images[0],
+          this.imageForm.value.name!,
+          this.imageForm.value.description!,
+          this.images[0].type,
+        )
+        .subscribe({
+          next: (res) => console.log('Uploaded', res),
+          error: (err) => console.error('Upload failed', err),
+        });
     }
   }
 

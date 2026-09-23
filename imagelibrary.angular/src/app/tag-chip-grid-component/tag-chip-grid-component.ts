@@ -37,7 +37,7 @@ export class ChipsAutocomplete {
   readonly tags = signal<string[]>([]);
   readonly allTags = signal<string[]>([]);
   startingTags = model<string[]>();
-  @Output() outputTags = new EventEmitter<String[]>();
+  @Output() outputTags = new EventEmitter<string[]>();
 
   newTags = <string[]>[];
   readonly filteredTags = computed(() => {

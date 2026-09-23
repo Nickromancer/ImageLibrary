@@ -14,11 +14,12 @@ export class ImageService {
     return this.http.get<Image[]>(this.baseUrl);
   }
 
-  upload(file: File, name: string, description: string): Observable<Image> {
+  upload(file: File, name: string, description: string, contentType: string): Observable<Image> {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('name', name);
     formData.append('description', description);
+    formData.append('contentType', contentType);
 
     return this.http.post<Image>(this.baseUrl, formData);
   }
