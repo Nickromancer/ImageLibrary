@@ -24,6 +24,7 @@ import { Console } from 'console';
 /**
  * @title Chips Autocomplete
  */
+
 @Component({
   selector: 'tag-chip-grid-component',
   templateUrl: 'tag-chip-grid-component.html',

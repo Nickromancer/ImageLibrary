@@ -17,11 +17,12 @@
     <form #f="ngForm" [formGroup]="imageForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="w-full">
         <mat-label>File Name</mat-label>
-        <input matInput formControlName="name" required />
+        @if (true) {}
+        <input matInput formControlName="name" />
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Description</mat-label>
-        <textarea rows="5" matInput formControlName="description" required></textarea>
+        <textarea rows="5" matInput formControlName="description"></textarea>
       </mat-form-field>
       <tag-chip-grid-component (outputTags)="OnTagAdded($event)"></tag-chip-grid-component>
       <app-checklist-component></app-checklist-component>

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { map, Observable, startWith } from 'rxjs';
 import { MatDivider, MatListModule } from '@angular/material/list';
@@ -15,6 +15,7 @@ import { ImageService } from '../services/image.service';
 import { TagService } from '../services/tag.service';
 import { Image } from '../models/image.model';
 import { MatAnchor } from '@angular/material/button';
+import { required } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-popup',
@@ -48,7 +49,7 @@ export class PopupSheetComponent {
 
     if (this.images.length > 1) {
       this.images.forEach((image) => {
-        this.imageService.upload(image, image.name, '', image.type).subscribe({
+        this.imageService.upload(image, image.name, 'A', image.type).subscribe({
           next: (res) => console.log('Uploaded', res),
           error: (err) => console.error('Upload failed', err),
         });
@@ -79,14 +80,25 @@ export class PopupSheetComponent {
     this.newTags = tags;
   }
   imageForm = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
+    name: new FormControl({ value: '', disabled: false }, Validators.required),
+    description: new FormControl({ value: '', disabled: false }, Validators.required),
   });
 
   onFilesSelected(files: File[]): void {
     // e.g. upload to your backend
     this.images = files;
     console.log('Accepted files:', files);
+    if (this.images.length <= 1) {
+      this.imageForm.get('name')?.enable();
+      this.imageForm.get('name')?.addValidators(Validators.required);
+      this.imageForm.get('description')?.enable();
+      this.imageForm.get('description')?.addValidators(Validators.required);
+    } else {
+      this.imageForm.get('name')?.disable();
+      this.imageForm.get('name')?.setValidators(null);
+      this.imageForm.get('description')?.disable();
+      this.imageForm.get('description')?.setValidators(null);
+    }
   }
 
   onFilesRejected(files: File[]): void {
