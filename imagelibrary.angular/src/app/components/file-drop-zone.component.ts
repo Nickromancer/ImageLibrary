@@ -8,6 +8,7 @@ import {
   OnDestroy,
   Output,
   signal,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -166,7 +167,7 @@ export class FileDropZoneComponent implements OnDestroy {
       this.previews.update((current) => [...current, ...newPreviews]);
     }
 
-    this.filesSelected.emit(accepted);
+    this.filesSelected.emit(this.previews().map((image) => image.file));
   }
 
   private isAcceptedType(mimeType: string): boolean {
@@ -189,6 +190,7 @@ export class FileDropZoneComponent implements OnDestroy {
   onRemoveClick(event: MouseEvent, index: number): void {
     event.preventDefault();
     event.stopPropagation();
+
     this.removePreview(index);
   }
 
@@ -199,8 +201,10 @@ export class FileDropZoneComponent implements OnDestroy {
       if (target?.url) {
         URL.revokeObjectURL(target.url);
       }
+
       return current.filter((_, i) => i !== index);
     });
+    this.filesSelected.emit(this.previews().map((image) => image.file));
   }
 
   /** Clear all previews and release their object URLs. */
@@ -211,6 +215,7 @@ export class FileDropZoneComponent implements OnDestroy {
       }
     });
     this.previews.set([]);
+    this.filesSelected.emit(this.previews().map((image) => image.file));
   }
 
   ngOnDestroy(): void {

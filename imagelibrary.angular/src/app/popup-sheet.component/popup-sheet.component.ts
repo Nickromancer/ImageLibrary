@@ -86,6 +86,7 @@ export class PopupSheetComponent {
 
   onFilesSelected(files: File[]): void {
     // e.g. upload to your backend
+    console.log(files);
     this.images = files;
     console.log('Accepted files:', files);
     if (this.images.length <= 1) {
