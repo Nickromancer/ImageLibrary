@@ -24,7 +24,10 @@
         <mat-label>Description</mat-label>
         <textarea rows="5" matInput formControlName="description"></textarea>
       </mat-form-field>
-      <tag-chip-grid-component (outputTags)="OnTagAdded($event)"></tag-chip-grid-component>
+      <tag-chip-grid-component
+        (outputNewTags)="OnNewTagAdded($event)"
+        (outputChosenTags)="OnTagAdded($event)"
+      ></tag-chip-grid-component>
       <app-checklist-component></app-checklist-component>
       <button matButton="elevated" type="submit" class="mt-5 w-full">Upload Image</button>
     </form>

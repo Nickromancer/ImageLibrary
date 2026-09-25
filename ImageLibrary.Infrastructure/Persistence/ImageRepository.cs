@@ -35,9 +35,12 @@ namespace ImageLibrary.Infrastructure.Persistence
             return await _context.Images.ToListAsync();
         }
 
-        public Task<Image> GetByIdAsync(int id)
+        public async Task<Image?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _context.Images
+                .AsNoTracking()
+                .Include(i => i.Tags)
+                .FirstOrDefaultAsync(i => i.Id == id, cancellationToken);
         }
 
         public Task UpdateImageAsync(Image image)

@@ -1,7 +1,13 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { forkJoin, map } from 'rxjs';
 import { ImageService } from '../services/image.service';
 import { Image } from '../models/image.model';
+
+interface DisplayImage extends Image {
+  imageUrl: string;
+  height: number;
+}
 
 @Component({
   selector: 'app-image-list',
@@ -9,56 +15,50 @@ import { Image } from '../models/image.model';
   imports: [CommonModule],
   templateUrl: './image-list.component.html',
 })
-export class ImageListComponent implements OnInit {
-  images = signal<Array<Image & { imageUrl: string } & { height: number }>>([]);
+export class ImageListComponent implements OnInit, OnDestroy {
+  images = signal<DisplayImage[]>([]);
   loading = signal(true);
   error: string | null = null;
-
-  imageSizes = [250, 275, 300, 325, 350];
 
   constructor(public imageService: ImageService) {}
 
   ngOnInit(): void {
     this.imageService.getAll().subscribe({
       next: (data) => {
-        this.images.set(
-          data.map((image) => ({
-            ...image,
-            imageUrl: this.toImageUrl(image.imageData, image.contentType),
-            height: Math.floor(Math.random() * (400 - 150 + 1)) + 150,
-          })),
+        if (data.length === 0) {
+          this.loading.set(false);
+          return;
+        }
+
+        const withUrls$ = data.map((image) =>
+          this.imageService.getImageUrl(image.id).pipe(
+            map((imageUrl) => ({
+              ...image,
+              imageUrl,
+              height: Math.floor(Math.random() * (400 - 150 + 1)) + 150,
+            })),
+          ),
         );
-        console.log(this.images);
-        this.loading.set(false);
+
+        forkJoin(withUrls$).subscribe({
+          next: (imagesWithUrls) => {
+            this.images.set(imagesWithUrls);
+            this.loading.set(false);
+          },
+          error: () => {
+            this.error = 'Failed to load image content.';
+            this.loading.set(false);
+          },
+        });
       },
       error: () => {
         this.error = 'Failed to load images.';
         this.loading.set(false);
       },
-      complete: () => {},
     });
   }
 
-  toImageUrl(imageData: string | number[] | undefined, contentType: string): string {
-    if (!imageData) {
-      return '';
-    }
-
-    if (typeof imageData === 'string') {
-      return imageData.startsWith('data:') ? imageData : `data:${contentType};base64,${imageData}`;
-    }
-
-    const bytes = new Uint8Array(imageData);
-    let binary = '';
-
-    for (let i = 0; i < bytes.length; i += 0x8000) {
-      binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-    }
-
-    return `data:${contentType};base64,${btoa(binary)}`;
-  }
-
-  randomSize(): number {
-    return this.imageSizes[Math.ceil(this.imageSizes.length * Math.random())];
+  ngOnDestroy(): void {
+    this.images().forEach((image) => URL.revokeObjectURL(image.imageUrl));
   }
 }

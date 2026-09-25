@@ -1,15 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import {
-  Component,
-  computed,
-  EventEmitter,
-  inject,
-  model,
-  Output,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, computed, EventEmitter, inject, model, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
@@ -19,7 +10,6 @@ import { type MatChipInputEvent, MatChipsModule } from '@angular/material/chips'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { TagService } from '../services/tag.service';
-import { Console } from 'console';
 
 /**
  * @title Chips Autocomplete
@@ -38,7 +28,8 @@ export class ChipsAutocomplete {
   readonly tags = signal<string[]>([]);
   readonly allTags = signal<string[]>([]);
   startingTags = model<string[]>();
-  @Output() outputTags = new EventEmitter<string[]>();
+  @Output() outputNewTags = new EventEmitter<string[]>();
+  @Output() outputChosenTags = new EventEmitter<string[]>();
 
   newTags = <string[]>[];
   readonly filteredTags = computed(() => {
@@ -78,7 +69,7 @@ export class ChipsAutocomplete {
     if (!this.startingTags()!.includes(value)) {
       this.tags.update((tags) => [...tags, value]);
       this.newTags.push(value);
-      this.outputTags.emit(this.newTags);
+      this.outputNewTags.emit(this.newTags);
 
       event.chipInput.clear();
       this.currentTag.set('');
@@ -97,6 +88,10 @@ export class ChipsAutocomplete {
     }
     event.chipInput.clear();
     this.currentTag.set('');
+
+    console.log('Tags selected ' + this.tags());
+    console.log('New Tags ' + this.newTags);
+    this.outputChosenTags.emit(this.tags());
   }
 
   remove(tag: string): void {
@@ -110,6 +105,13 @@ export class ChipsAutocomplete {
       this.announcer.announce(`Removed ${tag}`);
 
       if (this.startingTags()!.includes(tag)) this.allTags.update((tags) => [...tags, tag]);
+      if (this.newTags.includes(tag)) this.newTags.filter((oldTag) => oldTag != tag);
+
+      this.outputChosenTags.emit(this.tags());
+      this.outputNewTags.emit(this.newTags);
+
+      console.log('Tags selected ' + tags);
+      console.log('New Tags ' + this.newTags);
 
       return [...tags];
     });
@@ -125,5 +127,8 @@ export class ChipsAutocomplete {
 
     this.currentTag.set('');
     event.option.deselect();
+
+    this.outputChosenTags.emit(this.tags());
+    this.outputNewTags.emit(this.newTags);
   }
 }

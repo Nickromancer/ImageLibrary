@@ -23,10 +23,17 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Image>()
+           .HasMany(i => i.Tags)
+           .WithMany(t => t.Images)
+           .UsingEntity(j => j.ToTable("ImageTags"));
+
             modelBuilder.Entity<Image>().HasKey(p => p.Id);
             modelBuilder.Entity<Tag>()
                 .HasIndex(tag => tag.Name)
                 .IsUnique();
+
+
 
             //var placeholderPng = Convert.FromBase64String("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=");
             // Seed data

@@ -12,25 +12,41 @@ namespace ImageLibrary.Application.UseCases.UploadImage
 {
     public class UploadÍmageCommandHandler : IRequestHandler<UploadImageCommand, Image>
     {
-        private readonly IImageRepository _data;
+        private readonly IImageRepository _imageRepo;
+        private readonly ITagRepository _tagRepo;
 
-        public UploadÍmageCommandHandler(IImageRepository data)
+        public UploadÍmageCommandHandler(IImageRepository imageRepo, ITagRepository tagRepo)
         {
-            _data = data;
+            _imageRepo = imageRepo;
+            _tagRepo = tagRepo;
         }
-        public Task<Image> Handle(UploadImageCommand request, CancellationToken cancellationToken)
+        public async Task<Image> Handle(UploadImageCommand request, CancellationToken cancellationToken)
         {
-            Image image = new Image
+
+            var existingTags = await _tagRepo.GetAllTagsAsync();
+            var existingNames = existingTags.Select(t => t.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            var newTags = request.Tags
+                .Where(name => !existingNames.Contains(name))
+                .Select(name => new Tag { Name = name });
+
+            var allTags = existingTags
+                .Where(t => request.Tags.Contains(t.Name, StringComparer.OrdinalIgnoreCase))
+                .Concat(newTags)
+                .ToList();
+
+            var image = new Image
             {
                 Name = request.Name,
                 Description = request.Description,
                 ImageData = request.ImageData,
                 ContentType = request.ContentType,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                Tags = allTags,
+                CreatedAt = DateTime.UtcNow,
             };
 
-            return _data.AddImageAsync(image);
+
+            return await _imageRepo.AddImageAsync(image);
         }
     }
 }

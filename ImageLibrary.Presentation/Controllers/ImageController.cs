@@ -8,6 +8,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ImageLibrary.Domain.Entities;
+using ImageLibrary.Application.UseCases.GetImageById;
 
 namespace ImageLibrary.Presentation.Controllers
 {
@@ -16,6 +18,15 @@ namespace ImageLibrary.Presentation.Controllers
 
     public class ImageController : ControllerBase
     {
+        public record ImageResponse(
+            Guid Id,
+            string Name,
+            string Description,
+            string ContentType,
+            DateTime CreatedAt,
+            DateTime UpdatedAt,
+            List<string> Tags
+        );
         private readonly IMediator _mediator;
 
         public ImageController(IMediator mediator)
@@ -28,6 +39,7 @@ namespace ImageLibrary.Presentation.Controllers
             public string Name { get; set; }
             public string Description { get; set; }
             public IFormFile File { get; set; }
+            public string[] Tags { get; set; }
         }
 
         [Authorize]
@@ -49,10 +61,19 @@ namespace ImageLibrary.Presentation.Controllers
                 request.Name,
                 request.Description,
                 memoryStream.ToArray(),
-                request.File.ContentType
+                request.File.ContentType,
+                request.Tags
             ));
 
-            return Ok(result);
+            return Ok(new ImageResponse(
+                result.Id,
+                result.Name,
+                result.Description,
+                result.ContentType,
+                result.CreatedAt,
+                result.UpdatedAt,
+                result.Tags.Select(t => t.Name).ToList()
+            ));
         }
 
         [Authorize]
@@ -60,6 +81,16 @@ namespace ImageLibrary.Presentation.Controllers
         public async Task<List<Image>> Get()
         {
             return await _mediator.Send(new GetAllImagesQuery());
+        }
+
+        [Authorize]
+        [HttpGet("{id}/content")]
+        public async Task<IActionResult> GetImageContent(Guid id)
+        {
+            var image = await _mediator.Send(new GetImageByIdQuery(id));
+            if (image == null) return NotFound();
+
+            return File(image.ImageData, image.ContentType);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ImageLibrary.Application.Interfaces
 {
     public interface IImageRepository
     {
-        Task<Image> GetByIdAsync(int id);
+        Task<Image> GetByIdAsync(Guid id, CancellationToken cancellation);
         Task<List<Image>> GetAllImagesAsync();
         Task<Image> AddImageAsync(Image image);
         Task UpdateImageAsync(Image image);

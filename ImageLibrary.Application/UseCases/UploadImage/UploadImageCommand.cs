@@ -6,5 +6,5 @@ using MediatR;
 
 namespace ImageLibrary.Application.UseCases.UploadImage
 {
-    public record UploadImageCommand(string Name, string Description, byte[] ImageData, string ContentType) : IRequest<Image>;
+    public record UploadImageCommand(string Name, string Description, byte[] ImageData, string ContentType, string[] Tags) : IRequest<Image>;
 }

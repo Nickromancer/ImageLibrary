@@ -8,9 +8,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using ImageLibrary.Infrastructure.Persistence;
 
-namespace ImageLibrary.Application.UseCases.UploadImage
+namespace ImageLibrary.Application.UseCases.GetImageById
 {
-    public class GetImageByIdQueryHandler : IRequestHandler<GetAllImagesQuery, List<Image>>
+    public class GetImageByIdQueryHandler : IRequestHandler<GetImageByIdQuery, Image>
     {
         private readonly IImageRepository _data;
 
@@ -19,9 +19,9 @@ namespace ImageLibrary.Application.UseCases.UploadImage
             _data = data;
         }
        
-        public Task<List<Image>> Handle(GetAllImagesQuery request, CancellationToken cancellationToken)
+        public Task<Image> Handle(GetImageByIdQuery request, CancellationToken cancellationToken)
         {
-            return _data.GetAllImagesAsync();
+            return _data.GetByIdAsync(request.id, cancellationToken);
         }
     }
 }

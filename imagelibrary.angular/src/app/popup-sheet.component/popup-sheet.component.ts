@@ -43,22 +43,32 @@ export class PopupSheetComponent {
   private _bottomSheetRef = inject<MatBottomSheetRef<PopupSheetComponent>>(MatBottomSheetRef);
   images: File[] = [];
   newTags: string[] = [];
+  tags: string[] = [];
 
   onSubmit(): void {
-    console.log('onSubmit fired, images:', this.images, 'form:', this.imageForm.value);
+    console.log(
+      'onSubmit fired, images:',
+      this.images,
+      'form:',
+      this.imageForm.value,
+      'tags: ',
+      this.tags,
+    );
 
-    if (this.images.length > 1) {
-      this.images.forEach((image) => {
-        this.imageService.upload(image, image.name, 'A', image.type).subscribe({
-          next: (res) => console.log('Uploaded', res),
-          error: (err) => console.error('Upload failed', err),
-        });
-      });
-
+    if (this.newTags.length > 0) {
       this.newTags.forEach((tag) => {
         this.tagService.upload(tag).subscribe({
           next: (res) => console.log('Tag uploaded', res),
           error: (err) => console.error('Tag upload failed', err),
+        });
+      });
+    }
+
+    if (this.images.length > 1) {
+      this.images.forEach((image) => {
+        this.imageService.upload(image, image.name, '_', image.type, []).subscribe({
+          next: (res) => console.log('Uploaded', res),
+          error: (err) => console.error('Upload failed', err),
         });
       });
     } else if (this.images.length == 1) {
@@ -68,6 +78,7 @@ export class PopupSheetComponent {
           this.imageForm.value.name!,
           this.imageForm.value.description!,
           this.images[0].type,
+          this.tags,
         )
         .subscribe({
           next: (res) => console.log('Uploaded', res),
@@ -76,8 +87,12 @@ export class PopupSheetComponent {
     }
   }
 
-  OnTagAdded(tags: string[]): void {
+  OnNewTagAdded(tags: string[]): void {
     this.newTags = tags;
+  }
+
+  OnTagAdded(tags: string[]): void {
+    this.tags = tags;
   }
   imageForm = new FormGroup({
     name: new FormControl({ value: '', disabled: false }, Validators.required),

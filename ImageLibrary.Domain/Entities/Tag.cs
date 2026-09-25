@@ -10,5 +10,7 @@ public class Tag
         public required string Name { get; set; }
         public List<Image> Images { get; } = [];
 
+    public Tag() { }
+
 }
 
