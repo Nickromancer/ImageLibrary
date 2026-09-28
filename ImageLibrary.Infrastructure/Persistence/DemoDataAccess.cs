@@ -1,5 +1,5 @@
 ﻿using ImageLibrary.Infrastructure.Persistence;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 
 namespace ImageLibrary.Application;
 

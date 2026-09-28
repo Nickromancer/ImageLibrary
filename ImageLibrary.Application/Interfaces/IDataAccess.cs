@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 
 namespace ImageLibrary.Infrastructure.Persistence;
 

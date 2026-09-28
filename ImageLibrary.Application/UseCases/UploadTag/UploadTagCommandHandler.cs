@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ImageLibrary.Application.Interfaces;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;

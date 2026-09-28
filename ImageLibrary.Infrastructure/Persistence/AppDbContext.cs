@@ -1,13 +1,13 @@
 ﻿using System.Reflection.Emit;
 using System.Reflection.Metadata;
 using ImageLibrary.Domain.Entities;
-using ImageLibrary.Server.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Data.SqlClient;
 
-namespace ImageLibrary.Server.Infrastructure.Persistence
+namespace ImageLibrary.Infrastructure.Persistence
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -18,6 +18,8 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
 
         public DbSet<Image> Images{ get; set; }
         public DbSet<Tag> Tags{ get; set; }
+        public DbSet<ImageThumbnail> ImageThumbnail { get; set; }
+        public DbSet<ImagePicture> ImagePicture { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

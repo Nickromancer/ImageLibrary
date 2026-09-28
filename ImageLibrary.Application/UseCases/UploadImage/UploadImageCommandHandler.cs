@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ImageLibrary.Application.Interfaces;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,19 +27,25 @@ namespace ImageLibrary.Application.UseCases.UploadImage
         }
         public async Task<Image> Handle(UploadImageCommand request, CancellationToken cancellationToken)
         {
+            List<Tag> allTags;
+            if (request.Tags.Length != 0)
+            {
+                var existingTags = await _tagRepo.GetAllTagsAsync();
+                var existingNames = existingTags.Select(t => t.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            var existingTags = await _tagRepo.GetAllTagsAsync();
-            var existingNames = existingTags.Select(t => t.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
+                var newTags = request.Tags
+                    .Where(name => !existingNames.Contains(name))
+                    .Select(name => new Tag { Name = name });
 
-            var newTags = request.Tags
-                .Where(name => !existingNames.Contains(name))
-                .Select(name => new Tag { Name = name });
-
-            var allTags = existingTags
-                .Where(t => request.Tags.Contains(t.Name, StringComparer.OrdinalIgnoreCase))
-                .Concat(newTags)
-                .ToList();
-
+                allTags = existingTags
+                    .Where(t => request.Tags.Contains(t.Name, StringComparer.OrdinalIgnoreCase))
+                    .Concat(newTags)
+                    .ToList();
+            }
+            else
+            {
+                allTags = new List<Tag>();
+            }
 
             using var sharpImage = Sharp.Image.Load(request.ImageData);
             sharpImage.Mutate(x => x.Resize(new ResizeOptions

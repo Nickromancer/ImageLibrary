@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { forkJoin, map } from 'rxjs';
+import { catchError, forkJoin, map, of } from 'rxjs';
 import { ImageService } from '../services/image.service';
 import { Image } from '../models/image.model';
 
@@ -32,17 +32,14 @@ export class ImageListComponent implements OnInit, OnDestroy {
 
         const withUrls$ = data.map((image) =>
           this.imageService.getThumbnailUrl(image.id).pipe(
-            map((imageUrl) => ({
-              ...image,
-              imageUrl,
-              height: Math.floor(Math.random() * (400 - 150 + 1)) + 150,
-            })),
+            map((imageUrl) => ({ ...image, imageUrl, height: this.randomHeight() })),
+            catchError(() => of(null)), // a failed image becomes null instead of killing the batch
           ),
         );
 
         forkJoin(withUrls$).subscribe({
-          next: (imagesWithUrls) => {
-            this.images.set(imagesWithUrls);
+          next: (results) => {
+            this.images.set(results.filter((r): r is DisplayImage => r !== null));
             this.loading.set(false);
           },
           error: () => {
@@ -56,6 +53,22 @@ export class ImageListComponent implements OnInit, OnDestroy {
         this.loading.set(false);
       },
     });
+  }
+
+  /** Called by the parent after an upload; fetches only the new thumbnails. */
+  addImages(newImages: Image[]): void {
+    newImages.forEach((image) => {
+      this.imageService.getThumbnailUrl(image.id).subscribe((imageUrl) => {
+        this.images.update((current) => [
+          { ...image, imageUrl, height: this.randomHeight() },
+          ...current, // newest first
+        ]);
+      });
+    });
+  }
+
+  private randomHeight(): number {
+    return Math.floor(Math.random() * (400 - 150 + 1)) + 150;
   }
 
   ngOnDestroy(): void {

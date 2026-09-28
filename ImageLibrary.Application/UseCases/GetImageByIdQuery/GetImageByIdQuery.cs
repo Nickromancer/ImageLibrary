@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 using MediatR;
 
 namespace ImageLibrary.Application.UseCases.GetImageById
 {
-    public record GetImageByIdQuery(Guid id) : IRequest<Image>;
+    public record GetImageByIdQuery(Guid Id) : IRequest<Image>;
 }

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ImageLibrary.Application.UseCases.UploadImage;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ImageLibrary.Domain.Entities;
 using ImageLibrary.Application.UseCases.GetImageById;
+using ImageLibrary.Application.UseCases.GetThumbnailById;
+using ImageLibrary.Application.UseCases.GetPictureById;
+
 
 namespace ImageLibrary.Presentation.Controllers
 {
@@ -45,7 +48,7 @@ namespace ImageLibrary.Presentation.Controllers
         [Authorize]
         [HttpPost]
         [RequestSizeLimit(50_000_000)]
-        public async Task<ActionResult<Image>> Post([FromForm] UploadImageRequest request)
+        public async Task<ActionResult<ImageResponse>> Post([FromForm] UploadImageRequest request)
         {
             if (request.File == null || request.File.Length == 0)
                 return BadRequest("No file uploaded.");
@@ -84,24 +87,28 @@ namespace ImageLibrary.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet("{id}/content")]
-        public async Task<IActionResult> GetImageContent(Guid id)
+        [HttpGet("{id}/thumbnail")]
+        public async Task<IActionResult> GetImageThumbnail(Guid id)
         {
-            var image = await _mediator.Send(new GetImageByIdQuery(id));
-            if (image == null) return NotFound();
-
-            return File(image.Picture.Data, image.ContentType);
+            var thumb = await _mediator.Send(new GetThumbnailByIdQuery(id));
+            if (thumb?.Data is { Length: > 0 } data)
+            {
+                Response.Headers.CacheControl = "private, max-age=31536000, immutable";
+                return File(data, "image/jpeg");
+            }
+            return await GetImagePicture(id); // fall back to the original
         }
 
         [Authorize]
-        [HttpGet("{id}/thumbnail")]
-        public async Task<IActionResult> GetThumbnail(Guid id)
+        [HttpGet("{id}/picture")]
+        public async Task<IActionResult> GetImagePicture(Guid id)
         {
-            var image = await _mediator.Send(new GetImageByIdQuery(id));
-            if (image == null) return NotFound();
+            var picture = await _mediator.Send(new GetPictureByIdQuery(id));
+            var meta = await _mediator.Send(new GetImageByIdQuery(id));
+            if (picture?.Data is not { Length: > 0 } data || meta is null)
+                return NotFound();
 
-            Response.Headers.CacheControl = "private, max-age=31536000, immutable";
-            return File(image.Thumbnail.Data, "image/jpeg");
+            return File(data, meta.ContentType);
         }
     }
 }

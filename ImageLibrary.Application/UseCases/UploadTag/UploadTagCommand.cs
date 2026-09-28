@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 using MediatR;
 
 namespace ImageLibrary.Application.UseCases.UploadTag

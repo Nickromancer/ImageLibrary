@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using ImageLibrary.Application.Interfaces;
-using ImageLibrary.Server.Domain.Entities;
-using ImageLibrary.Server.Infrastructure.Persistence;
+using ImageLibrary.Domain.Entities;
+using ImageLibrary.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace ImageLibrary.Infrastructure.Persistence

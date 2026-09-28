@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImageLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260928104123_AddSeperateDataOfPicturesAndThumbnails")]
-    partial class AddSeperateDataOfPicturesAndThumbnails
+    [Migration("20260928132235_AddTagsOptional")]
+    partial class AddTagsOptional
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,7 +90,7 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.Image", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.Image", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +118,7 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImagePicture", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.ImagePicture", b =>
                 {
                     b.Property<Guid>("ImageId")
                         .HasColumnType("uniqueidentifier");
@@ -132,7 +132,7 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.ToTable("ImagePicture");
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImageThumbnail", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.ImageThumbnail", b =>
                 {
                     b.Property<Guid>("ImageId")
                         .HasColumnType("uniqueidentifier");
@@ -146,7 +146,7 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.ToTable("ImageThumbnail");
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.Tag", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -312,22 +312,22 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImagePicture", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.ImagePicture", b =>
                 {
-                    b.HasOne("ImageLibrary.Server.Domain.Entities.Image", "Image")
+                    b.HasOne("ImageLibrary.Domain.Entities.Image", "Image")
                         .WithOne("Picture")
-                        .HasForeignKey("ImageLibrary.Server.Domain.Entities.ImagePicture", "ImageId")
+                        .HasForeignKey("ImageLibrary.Domain.Entities.ImagePicture", "ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Image");
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImageThumbnail", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.ImageThumbnail", b =>
                 {
-                    b.HasOne("ImageLibrary.Server.Domain.Entities.Image", "Image")
+                    b.HasOne("ImageLibrary.Domain.Entities.Image", "Image")
                         .WithOne("Thumbnail")
-                        .HasForeignKey("ImageLibrary.Server.Domain.Entities.ImageThumbnail", "ImageId")
+                        .HasForeignKey("ImageLibrary.Domain.Entities.ImageThumbnail", "ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -336,13 +336,13 @@ namespace ImageLibrary.Infrastructure.Migrations
 
             modelBuilder.Entity("ImageTag", b =>
                 {
-                    b.HasOne("ImageLibrary.Server.Domain.Entities.Image", null)
+                    b.HasOne("ImageLibrary.Domain.Entities.Image", null)
                         .WithMany()
                         .HasForeignKey("ImagesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ImageLibrary.Server.Domain.Entities.Tag", null)
+                    b.HasOne("ImageLibrary.Domain.Entities.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -400,13 +400,11 @@ namespace ImageLibrary.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.Image", b =>
+            modelBuilder.Entity("ImageLibrary.Domain.Entities.Image", b =>
                 {
-                    b.Navigation("Picture")
-                        .IsRequired();
+                    b.Navigation("Picture");
 
-                    b.Navigation("Thumbnail")
-                        .IsRequired();
+                    b.Navigation("Thumbnail");
                 });
 #pragma warning restore 612, 618
         }

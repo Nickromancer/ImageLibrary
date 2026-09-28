@@ -16,7 +16,7 @@ export class ImageService {
 
   getImageUrl(id: string): Observable<string> {
     return this.http
-      .get(`${this.baseUrl}/${id}/content`, { responseType: 'blob' })
+      .get(`${this.baseUrl}/${id}/picture`, { responseType: 'blob' })
       .pipe(map((blob) => URL.createObjectURL(blob)));
   }
   getThumbnailUrl(id: string): Observable<string> {

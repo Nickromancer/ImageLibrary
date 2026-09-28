@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageLibrary.Application.UseCases.GetAllTags;
 using ImageLibrary.Application.UseCases.UploadTag;
-using ImageLibrary.Server.Domain.Entities;
+using ImageLibrary.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

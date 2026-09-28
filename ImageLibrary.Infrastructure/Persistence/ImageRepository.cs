@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using ImageLibrary.Application.Interfaces;
-using ImageLibrary.Server.Domain.Entities;
-using ImageLibrary.Server.Infrastructure.Persistence;
+using ImageLibrary.Domain.Entities;
+using ImageLibrary.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace ImageLibrary.Infrastructure.Persistence
@@ -35,12 +35,26 @@ namespace ImageLibrary.Infrastructure.Persistence
             return await _context.Images.ToListAsync();
         }
 
-        public async Task<Image?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Image?> GetImageByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Images
                 .AsNoTracking()
                 .Include(i => i.Tags)
                 .FirstOrDefaultAsync(i => i.Id == id, cancellationToken);
+        }
+
+        public async Task<ImagePicture?> GetImagePictureByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.ImagePicture
+                .AsNoTracking()
+                .FirstOrDefaultAsync(i => i.ImageId == id, cancellationToken);
+        }
+
+        public async Task<ImageThumbnail?> GetImageThumbnailByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _context.ImageThumbnail
+                .AsNoTracking()
+                .FirstOrDefaultAsync(i => i.ImageId == id, cancellationToken);
         }
 
         public Task UpdateImageAsync(Image image)

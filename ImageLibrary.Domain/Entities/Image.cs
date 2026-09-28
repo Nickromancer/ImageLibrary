@@ -1,4 +1,4 @@
-﻿namespace ImageLibrary.Server.Domain.Entities
+﻿namespace ImageLibrary.Domain.Entities
 {
     public class Image
     {
@@ -8,10 +8,10 @@
         public required string ContentType { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public ImagePicture Picture { get; set; } = new ImagePicture();
-        public ImageThumbnail Thumbnail { get; set; } = new ImageThumbnail();
+        public ImagePicture? Picture { get; set; }
+        public ImageThumbnail? Thumbnail { get; set; }
 
-        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
+        public ICollection<Tag>? Tags { get; set; } = new List<Tag>();
     }
     public class ImagePicture
     {

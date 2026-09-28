@@ -36,12 +36,11 @@ export class PopupSheetComponent {
   constructor(
     private imageService: ImageService,
     private tagService: TagService,
-    private document: Document,
   ) {}
   private _bottomSheetRef = inject<MatBottomSheetRef<PopupSheetComponent>>(MatBottomSheetRef);
   images: File[] = [];
   newTags: string[] = [];
-  tags: string[] = [];
+  tags: string[] = [''];
 
   onSubmit(): void {
     if (this.images.length === 0) return;

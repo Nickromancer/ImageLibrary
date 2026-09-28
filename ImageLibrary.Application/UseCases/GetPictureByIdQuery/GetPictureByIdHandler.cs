@@ -8,20 +8,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using ImageLibrary.Infrastructure.Persistence;
 
-namespace ImageLibrary.Application.UseCases.GetImageById
+namespace ImageLibrary.Application.UseCases.GetPictureById
 {
-    public class GetImageByIdQueryHandler : IRequestHandler<GetImageByIdQuery, Image>
+    public class GetPictureByIdHandler : IRequestHandler<GetPictureByIdQuery, ImagePicture>
     {
         private readonly IImageRepository _data;
 
-        public GetImageByIdQueryHandler(IImageRepository data)
+        public GetPictureByIdHandler(IImageRepository data)
         {
             _data = data;
         }
        
-        public Task<Image> Handle(GetImageByIdQuery request, CancellationToken cancellationToken)
+        public Task<ImagePicture> Handle(GetPictureByIdQuery request, CancellationToken cancellationToken)
         {
-            return _data.GetImageByIdAsync(request.Id, cancellationToken);
+            return _data.GetImagePictureByIdAsync(request.Id, cancellationToken);
         }
     }
 }
