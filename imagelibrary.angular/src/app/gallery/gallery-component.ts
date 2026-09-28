@@ -1,4 +1,4 @@
-import { Component, inject, forwardRef } from '@angular/core';
+import { Component, inject, forwardRef, viewChild } from '@angular/core';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PopupSheetComponent } from '../popup-sheet.component/popup-sheet.component';
+import { Image } from '../models/image.model';
 
 @Component({
   imports: [
@@ -31,8 +32,14 @@ import { PopupSheetComponent } from '../popup-sheet.component/popup-sheet.compon
 })
 export class GalleryComponent {
   private _bottomSheet = inject(MatBottomSheet);
+  imageList = viewChild.required(ImageListComponent);
 
   openBottomSheet(): void {
-    this._bottomSheet.open(PopupSheetComponent);
+    this._bottomSheet
+      .open(PopupSheetComponent)
+      .afterDismissed()
+      .subscribe((uploaded?: Image[]) => {
+        if (uploaded?.length) this.imageList().addImages(uploaded);
+      });
   }
 }

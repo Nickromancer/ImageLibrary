@@ -7,8 +7,13 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using ImageLibrary.Infrastructure.Persistence;
+using Sharp = SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp.Formats.Jpeg;
+
 
 namespace ImageLibrary.Application.UseCases.UploadImage
+
 {
     public class UploadÍmageCommandHandler : IRequestHandler<UploadImageCommand, Image>
     {
@@ -35,16 +40,28 @@ namespace ImageLibrary.Application.UseCases.UploadImage
                 .Concat(newTags)
                 .ToList();
 
+
+            using var sharpImage = Sharp.Image.Load(request.ImageData);
+            sharpImage.Mutate(x => x.Resize(new ResizeOptions
+            {
+                Mode = ResizeMode.Max,
+                Size = new Sharp.Size(400, 400),
+            }));
+
+            using var thumbStream = new MemoryStream();
+            await Sharp.ImageExtensions.SaveAsJpegAsync(sharpImage, thumbStream, cancellationToken);
+            var thumbnailData = thumbStream.ToArray();
+
             var image = new Image
             {
                 Name = request.Name,
                 Description = request.Description,
-                ImageData = request.ImageData,
+                Picture = new ImagePicture {Data = request.ImageData },
+                Thumbnail = new ImageThumbnail { Data = thumbnailData },
                 ContentType = request.ContentType,
                 Tags = allTags,
                 CreatedAt = DateTime.UtcNow,
             };
-
 
             return await _imageRepo.AddImageAsync(image);
         }

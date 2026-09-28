@@ -31,7 +31,7 @@ export class ImageListComponent implements OnInit, OnDestroy {
         }
 
         const withUrls$ = data.map((image) =>
-          this.imageService.getImageUrl(image.id).pipe(
+          this.imageService.getThumbnailUrl(image.id).pipe(
             map((imageUrl) => ({
               ...image,
               imageUrl,

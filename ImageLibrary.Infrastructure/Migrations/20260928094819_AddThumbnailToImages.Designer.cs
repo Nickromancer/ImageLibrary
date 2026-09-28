@@ -4,6 +4,7 @@ using ImageLibrary.Server.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImageLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260928094819_AddThumbnailToImages")]
+    partial class AddThumbnailToImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,11 +104,20 @@ namespace ImageLibrary.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ThumbnailData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -113,34 +125,6 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImagePicture", b =>
-                {
-                    b.Property<Guid>("ImageId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("Data")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("ImageId");
-
-                    b.ToTable("ImagePicture");
-                });
-
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImageThumbnail", b =>
-                {
-                    b.Property<Guid>("ImageId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("Data")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("ImageId");
-
-                    b.ToTable("ImageThumbnail");
                 });
 
             modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.Tag", b =>
@@ -309,28 +293,6 @@ namespace ImageLibrary.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImagePicture", b =>
-                {
-                    b.HasOne("ImageLibrary.Server.Domain.Entities.Image", "Image")
-                        .WithOne("Picture")
-                        .HasForeignKey("ImageLibrary.Server.Domain.Entities.ImagePicture", "ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-                });
-
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.ImageThumbnail", b =>
-                {
-                    b.HasOne("ImageLibrary.Server.Domain.Entities.Image", "Image")
-                        .WithOne("Thumbnail")
-                        .HasForeignKey("ImageLibrary.Server.Domain.Entities.ImageThumbnail", "ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-                });
-
             modelBuilder.Entity("ImageTag", b =>
                 {
                     b.HasOne("ImageLibrary.Server.Domain.Entities.Image", null)
@@ -394,15 +356,6 @@ namespace ImageLibrary.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ImageLibrary.Server.Domain.Entities.Image", b =>
-                {
-                    b.Navigation("Picture")
-                        .IsRequired();
-
-                    b.Navigation("Thumbnail")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

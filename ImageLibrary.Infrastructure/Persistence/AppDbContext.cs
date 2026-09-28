@@ -23,12 +23,27 @@ namespace ImageLibrary.Server.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Image>().HasKey(p => p.Id);
+            modelBuilder.Entity<ImagePicture>().HasKey(p => p.ImageId);
+            modelBuilder.Entity<ImageThumbnail>().HasKey(t => t.ImageId);
+
+            modelBuilder.Entity<Image>()
+               .HasOne(i => i.Picture)
+               .WithOne(p => p.Image)
+               .HasForeignKey<ImagePicture>(p => p.ImageId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Image>()
+                .HasOne(i => i.Thumbnail)
+                .WithOne(t => t.Image)
+                .HasForeignKey<ImageThumbnail>(t => t.ImageId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Image>()
            .HasMany(i => i.Tags)
            .WithMany(t => t.Images)
            .UsingEntity(j => j.ToTable("ImageTags"));
 
-            modelBuilder.Entity<Image>().HasKey(p => p.Id);
             modelBuilder.Entity<Tag>()
                 .HasIndex(tag => tag.Name)
                 .IsUnique();

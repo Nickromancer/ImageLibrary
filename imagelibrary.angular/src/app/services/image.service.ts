@@ -19,6 +19,11 @@ export class ImageService {
       .get(`${this.baseUrl}/${id}/content`, { responseType: 'blob' })
       .pipe(map((blob) => URL.createObjectURL(blob)));
   }
+  getThumbnailUrl(id: string): Observable<string> {
+    return this.http
+      .get(`${this.baseUrl}/${id}/thumbnail`, { responseType: 'blob' })
+      .pipe(map((blob) => URL.createObjectURL(blob)));
+  }
 
   upload(
     file: File,

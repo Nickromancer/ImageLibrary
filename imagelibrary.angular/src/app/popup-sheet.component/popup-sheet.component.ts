@@ -1,21 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { map, Observable, startWith } from 'rxjs';
-import { MatDivider, MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatFormField, MatLabel, MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatInput } from '@angular/material/input';
 import { FileDropZoneComponent } from '../components/file-drop-zone.component';
 import { ChipsAutocomplete } from '../tag-chip-grid-component/tag-chip-grid-component';
-import { Tag } from '../models/tag.model';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ChecklistComponent } from '../checklist-component/checklist-component';
 import { FormsModule } from '@angular/forms';
 import { ImageService } from '../services/image.service';
 import { TagService } from '../services/tag.service';
-import { Image } from '../models/image.model';
 import { MatAnchor } from '@angular/material/button';
-import { required } from '@angular/forms/signals';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-popup',
@@ -39,6 +36,7 @@ export class PopupSheetComponent {
   constructor(
     private imageService: ImageService,
     private tagService: TagService,
+    private document: Document,
   ) {}
   private _bottomSheetRef = inject<MatBottomSheetRef<PopupSheetComponent>>(MatBottomSheetRef);
   images: File[] = [];
@@ -46,45 +44,25 @@ export class PopupSheetComponent {
   tags: string[] = [];
 
   onSubmit(): void {
-    console.log(
-      'onSubmit fired, images:',
-      this.images,
-      'form:',
-      this.imageForm.value,
-      'tags: ',
-      this.tags,
+    if (this.images.length === 0) return;
+
+    const single: boolean = this.images.length === 1;
+    const allTags: string[] = [...new Set([...this.tags, ...this.newTags])];
+
+    const uploads = this.images.map((file) =>
+      this.imageService.upload(
+        file,
+        single ? this.imageForm.value.name! : file.name,
+        single ? this.imageForm.value.description! : '_',
+        file.type,
+        allTags,
+      ),
     );
 
-    if (this.newTags.length > 0) {
-      this.newTags.forEach((tag) => {
-        this.tagService.upload(tag).subscribe({
-          next: (res) => console.log('Tag uploaded', res),
-          error: (err) => console.error('Tag upload failed', err),
-        });
-      });
-    }
-
-    if (this.images.length > 1) {
-      this.images.forEach((image) => {
-        this.imageService.upload(image, image.name, '_', image.type, []).subscribe({
-          next: (res) => console.log('Uploaded', res),
-          error: (err) => console.error('Upload failed', err),
-        });
-      });
-    } else if (this.images.length == 1) {
-      this.imageService
-        .upload(
-          this.images[0],
-          this.imageForm.value.name!,
-          this.imageForm.value.description!,
-          this.images[0].type,
-          this.tags,
-        )
-        .subscribe({
-          next: (res) => console.log('Uploaded', res),
-          error: (err) => console.error('Upload failed', err),
-        });
-    }
+    forkJoin(uploads).subscribe({
+      next: (uploaded) => this._bottomSheetRef.dismiss(uploaded),
+      error: (err) => console.error('Upload failed', err),
+    });
   }
 
   OnNewTagAdded(tags: string[]): void {

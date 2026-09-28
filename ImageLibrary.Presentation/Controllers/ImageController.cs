@@ -90,7 +90,18 @@ namespace ImageLibrary.Presentation.Controllers
             var image = await _mediator.Send(new GetImageByIdQuery(id));
             if (image == null) return NotFound();
 
-            return File(image.ImageData, image.ContentType);
+            return File(image.Picture.Data, image.ContentType);
+        }
+
+        [Authorize]
+        [HttpGet("{id}/thumbnail")]
+        public async Task<IActionResult> GetThumbnail(Guid id)
+        {
+            var image = await _mediator.Send(new GetImageByIdQuery(id));
+            if (image == null) return NotFound();
+
+            Response.Headers.CacheControl = "private, max-age=31536000, immutable";
+            return File(image.Thumbnail.Data, "image/jpeg");
         }
     }
 }
