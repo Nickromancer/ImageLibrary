@@ -15,12 +15,12 @@ using SixLabors.ImageSharp.Formats.Jpeg;
 namespace ImageLibrary.Application.UseCases.UploadImage
 
 {
-    public class UploadÍmageCommandHandler : IRequestHandler<UploadImageCommand, Image>
+    public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand, Image>
     {
         private readonly IImageRepository _imageRepo;
         private readonly ITagRepository _tagRepo;
 
-        public UploadÍmageCommandHandler(IImageRepository imageRepo, ITagRepository tagRepo)
+        public UploadImageCommandHandler(IImageRepository imageRepo, ITagRepository tagRepo)
         {
             _imageRepo = imageRepo;
             _tagRepo = tagRepo;

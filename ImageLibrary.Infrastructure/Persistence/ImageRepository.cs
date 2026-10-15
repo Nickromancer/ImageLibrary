@@ -25,9 +25,9 @@ namespace ImageLibrary.Infrastructure.Persistence
             return image;
         }
 
-        public Task DeleteImageAsync(int id)
+        public async Task DeleteImageAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            await _context.Images.AsNoTracking().Where(i => i.Id == id).ExecuteDeleteAsync(cancellationToken);
         }
 
         public async Task<List<Image>> GetAllImagesAsync()

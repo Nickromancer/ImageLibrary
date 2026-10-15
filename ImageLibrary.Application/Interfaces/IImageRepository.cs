@@ -13,6 +13,6 @@ namespace ImageLibrary.Application.Interfaces
         Task<List<Image>> GetAllImagesAsync();
         Task<Image> AddImageAsync(Image image);
         Task UpdateImageAsync(Image image);
-        Task DeleteImageAsync(int id);
+        Task DeleteImageAsync(Guid id, CancellationToken cancellation);
     }
 }

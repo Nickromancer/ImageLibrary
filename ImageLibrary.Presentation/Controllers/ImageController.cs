@@ -12,6 +12,7 @@ using ImageLibrary.Domain.Entities;
 using ImageLibrary.Application.UseCases.GetImageById;
 using ImageLibrary.Application.UseCases.GetThumbnailById;
 using ImageLibrary.Application.UseCases.GetPictureById;
+using ImageLibrary.Application.UseCases.DeleteImage;
 
 
 namespace ImageLibrary.Presentation.Controllers
@@ -109,6 +110,14 @@ namespace ImageLibrary.Presentation.Controllers
                 return NotFound();
 
             return File(data, meta.ContentType);
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteImage(Guid id)
+        {
+            await _mediator.Send(new DeleteImageCommand(id));
+            return Ok();
         }
     }
 }

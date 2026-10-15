@@ -1,12 +1,12 @@
 import { $n as Output, Dc as Injector, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ec as InjectionToken, En as ElementRef, Er as ViewContainerRef, Fc as NgZone, In as Input, M as createComponent, Mr as afterNextRender, O as booleanAttribute, Oo as ɵɵgetInheritedFactory, Wi as setClassMetadata, Zn as NgModuleRef$1, ao as ɵɵdefineService, ar as RendererFactory2, bc as EventEmitter, ca as ɵɵInheritDefinitionFeature, cn as Component, dr as Service, ir as Renderer2, la as ɵɵNgOnChangesFeature, lc as ANIMATION_MODULE_TYPE, mc as DOCUMENT, no as ɵɵdefineDirective, qn as NgModule, ro as ɵɵdefineNgModule, sl as inject, tn as ApplicationRef, to as ɵɵdefineComponent, vc as EnvironmentInjector, vr as TemplateRef, wn as Directive } from "./core-CVHS-hD8.js";
 import { Qn as Subject, Xt as filter, h as takeWhile, ur as Subscription } from "./esm5-ChK3bs0s.js";
-import { D as _getEventTarget, t as _IdGenerator, v as coerceArray } from "./_id-generator-chunk-pTONyQgT.js";
-import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { jt as Location } from "./common-BTPD6OCC.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
+import { n as coerceArray, r as _getEventTarget, t as _IdGenerator } from "./_id-generator-chunk-DR8zbnVS.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
 import { _ as ViewportRuler, m as ScrollingModule, p as ScrollDispatcher, y as supportsScrollBehavior } from "./scrolling-CqcNghO1.js";
+import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 //#region node_modules/@angular/cdk/fesm2022/_test-environment-chunk.mjs
 function _isTestEnvironment() {
 	return typeof __karma__ !== "undefined" && !!__karma__ || typeof jasmine !== "undefined" && !!jasmine || typeof jest !== "undefined" && !!jest || typeof Mocha !== "undefined" && !!Mocha;
@@ -502,6 +502,9 @@ var CloseScrollStrategy = class {
 		if (this._overlayRef.hasAttached()) this._ngZone.run(() => this._overlayRef.detach());
 	};
 };
+function createNoopScrollStrategy() {
+	return new NoopScrollStrategy();
+}
 var NoopScrollStrategy = class {
 	enable() {}
 	disable() {}
@@ -619,6 +622,30 @@ var OverlayConfig = class {
 			for (const key of configKeys) if (config[key] !== void 0) this[key] = config[key];
 		}
 	}
+};
+var ConnectionPositionPair = class {
+	offsetX;
+	offsetY;
+	panelClass;
+	originX;
+	originY;
+	overlayX;
+	overlayY;
+	constructor(origin, overlay, offsetX, offsetY, panelClass) {
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+		this.panelClass = panelClass;
+		this.originX = origin.originX;
+		this.originY = origin.originY;
+		this.overlayX = overlay.overlayX;
+		this.overlayY = overlay.overlayY;
+	}
+};
+var ScrollingVisibility = class {
+	isOriginClipped = false;
+	isOriginOutsideView = false;
+	isOverlayClipped = false;
+	isOverlayOutsideView = false;
 };
 var ConnectedOverlayPositionChange = class {
 	connectionPair;
@@ -885,6 +912,9 @@ function isElement(value) {
 	return value && value.nodeType === 1;
 }
 var attachedOverlays = /* @__PURE__ */ new Set();
+function getAttachedOverlays() {
+	return Array.from(attachedOverlays);
+}
 var OverlayRef = class {
 	_portalOutlet;
 	_host;
@@ -1793,6 +1823,58 @@ function compareScrollVisibility(a, b) {
 	if (a === b) return true;
 	return a.isOriginClipped === b.isOriginClipped && a.isOriginOutsideView === b.isOriginOutsideView && a.isOverlayClipped === b.isOverlayClipped && a.isOverlayOutsideView === b.isOverlayOutsideView;
 }
+var STANDARD_DROPDOWN_BELOW_POSITIONS = [
+	{
+		originX: "start",
+		originY: "bottom",
+		overlayX: "start",
+		overlayY: "top"
+	},
+	{
+		originX: "start",
+		originY: "top",
+		overlayX: "start",
+		overlayY: "bottom"
+	},
+	{
+		originX: "end",
+		originY: "bottom",
+		overlayX: "end",
+		overlayY: "top"
+	},
+	{
+		originX: "end",
+		originY: "top",
+		overlayX: "end",
+		overlayY: "bottom"
+	}
+];
+var STANDARD_DROPDOWN_ADJACENT_POSITIONS = [
+	{
+		originX: "end",
+		originY: "top",
+		overlayX: "start",
+		overlayY: "top"
+	},
+	{
+		originX: "end",
+		originY: "bottom",
+		overlayX: "start",
+		overlayY: "bottom"
+	},
+	{
+		originX: "start",
+		originY: "top",
+		overlayX: "end",
+		overlayY: "top"
+	},
+	{
+		originX: "start",
+		originY: "bottom",
+		overlayX: "end",
+		overlayY: "bottom"
+	}
+];
 var wrapperClass = "cdk-global-overlay-wrapper";
 function createGlobalPositionStrategy(_injector) {
 	return new GlobalPositionStrategy();
@@ -2670,4 +2752,4 @@ var FullscreenOverlayContainer = class FullscreenOverlayContainer extends Overla
 	(typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FullscreenOverlayContainer, [{ type: Service }], null, null);
 })();
 //#endregion
-export { createBlockScrollStrategy as a, createOverlayRef as c, CdkPortalOutlet as d, ComponentPortal as f, OverlayRef as i, createRepositionScrollStrategy as l, TemplatePortal as m, OverlayContainer as n, createFlexibleConnectedPositionStrategy as o, PortalModule as p, OverlayModule as r, createGlobalPositionStrategy as s, OverlayConfig as t, BasePortalOutlet as u };
+export { createNoopScrollStrategy as A, PortalModule as B, STANDARD_DROPDOWN_BELOW_POSITIONS as C, createCloseScrollStrategy as D, createBlockScrollStrategy as E, validateVerticalPosition as F, BasePortalOutlet as I, CdkPortalOutlet as L, createRepositionScrollStrategy as M, getAttachedOverlays as N, createFlexibleConnectedPositionStrategy as O, validateHorizontalPosition as P, ComponentPortal as R, STANDARD_DROPDOWN_ADJACENT_POSITIONS as S, ScrollingVisibility as T, TemplatePortal as V, OverlayModule as _, CdkOverlayOrigin as a, OverlayRef as b, ConnectionPositionPair as c, NoopScrollStrategy as d, OVERLAY_DEFAULT_CONFIG as f, OverlayKeyboardDispatcher as g, OverlayContainer as h, CdkConnectedOverlay as i, createOverlayRef as j, createGlobalPositionStrategy as k, FlexibleConnectedPositionStrategy as l, OverlayConfig as m, BlockScrollStrategy as n, CloseScrollStrategy as o, Overlay as p, CDK_CONNECTED_OVERLAY_DEFAULT_CONFIG as r, ConnectedOverlayPositionChange as s, FullscreenOverlayContainer as t, GlobalPositionStrategy as u, OverlayOutsideClickDispatcher as v, ScrollStrategyOptions as w, RepositionScrollStrategy as x, OverlayPositionBuilder as y, DomPortalOutlet as z };

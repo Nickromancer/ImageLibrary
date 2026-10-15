@@ -1,13 +1,12 @@
 import { Ca as ɵɵconditional, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, O as booleanAttribute, Ta as ɵɵconditionalCreate, Wi as setClassMetadata, X as input, as as ɵɵprojectionDef, ba as ɵɵclassMap, ca as ɵɵInheritDefinitionFeature, cn as Component, da as ɵɵadvance, do as ɵɵdomElementEnd, fo as ɵɵdomElementStart, ir as Renderer2, is as ɵɵprojection, no as ɵɵdefineDirective, qn as NgModule, ro as ɵɵdefineNgModule, rt as numberAttribute, sl as inject, so as ɵɵdomElement, to as ɵɵdefineComponent, wn as Directive, xa as ɵɵclassProp, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
-import { x as FocusMonitor } from "./_id-generator-chunk-pTONyQgT.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
-import "./private-CSMSo6mO.js";
 import { t as BidiModule } from "./bidi-BIOWbFqv.js";
+import { y as FocusMonitor } from "./_a11y-module-chunk-gl0GimJf.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
-import { t as _StructuralStylesLoader } from "./_structural-styles-chunk-Datkot7X.js";
-import { t as MatRippleModule } from "./_ripple-module-chunk-DXEO9Znv.js";
-import { t as MatRippleLoader } from "./_ripple-loader-chunk-BMkf3w6-.js";
+import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
+import { t as _StructuralStylesLoader } from "./_structural-styles-chunk-DRTjC8Co.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-hFLjVKX5.js";
+import { t as MatRippleLoader } from "./_ripple-loader-chunk-3c7bbzrD.js";
 //#region node_modules/@angular/material/fesm2022/_icon-button-chunk.mjs
 var _c0$1 = ["*", [[
 	"",

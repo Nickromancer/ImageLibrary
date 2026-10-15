@@ -1,13 +1,58 @@
 <div class="flex">
-  <div class="columns-6 mx-20 gap-y-10 overflow-y-auto">
+  <div class="columns-6 mx-20">
     @for (image of images(); track image.id) {
-      <div class="image-card *:rounded-2xl p-2">
-        <img
-          [src]="image.imageUrl"
-          [alt]="image.name"
-          [style.height.px]="image.height"
-          class="w-full object-cover aspect-square"
-        />
+      <div class="py-2">
+        <div class="group relative" (click)="OpenPicture($event)">
+          <img
+            [src]="image.imageUrl"
+            [alt]="image.name"
+            class="h-full w-full object-contain outline-0 rounded-2xl"
+          />
+
+          <div
+            class="absolute right-2 top-2 opacity-0 transition-opacity duration-100 group-hover:opacity-100"
+            [class.opacity-100]="openId() === image.id"
+          >
+            <button
+              matIconButton
+              cdkOverlayOrigin
+              #trigger="cdkOverlayOrigin"
+              class="bg-black/60! text-white! rounded-2xl"
+              (click)="
+                $event.stopPropagation(); openId.set(openId() === image.id ? null : image.id)
+              "
+            >
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+
+            <ng-template
+              cdkConnectedOverlay
+              [cdkConnectedOverlayOrigin]="trigger"
+              [cdkConnectedOverlayOpen]="openId() === image.id"
+              [cdkConnectedOverlayPositions]="positions"
+              (overlayOutsideClick)="openId.set(null)"
+              (detach)="openId.set(null)"
+            >
+              <div class="w-40 rounded-2xl bg-white p-2 shadow-xl">
+                <button class="w-full rounded-lg px-4 py-2 text-left font-medium hover:bg-gray-200">
+                  Edit Image
+                </button>
+                <button
+                  class="w-full rounded-lg px-4 py-2 text-left font-medium hover:bg-gray-200"
+                  (click)="DownloadPicture(image.id)"
+                >
+                  Download image
+                </button>
+                <button
+                  class="w-full rounded-lg px-4 py-2 text-left font-medium hover:bg-red-900 bg-red-700 text-white"
+                  (click)="DeletePicture(image.id, image.imageUrl)"
+                >
+                  Remove Image
+                </button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
       </div>
     }
   </div>

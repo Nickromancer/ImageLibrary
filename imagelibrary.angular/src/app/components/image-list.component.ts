@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 import { catchError, forkJoin, map, of } from 'rxjs';
 import { ImageService } from '../services/image.service';
 import { Image } from '../models/image.model';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { OverlayModule, ConnectedPosition } from '@angular/cdk/overlay';
 
 interface DisplayImage extends Image {
   imageUrl: string;
@@ -12,15 +18,44 @@ interface DisplayImage extends Image {
 @Component({
   selector: 'app-image-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    RouterLink,
+    MatIconModule,
+    MatMenuModule,
+    OverlayModule,
+  ],
   templateUrl: './image-list.component.html',
 })
 export class ImageListComponent implements OnInit, OnDestroy {
+  DeletePicture(arg0: string, arg1: string) {
+    this.imageService.deleteImage(arg0).subscribe({});
+    this.images.update((current) => current.filter((image) => image.imageUrl !== arg1));
+  }
+  constructor(public imageService: ImageService) {}
+
+  DownloadPicture(arg0: string) {
+    this.imageService.getImageUrl(arg0).subscribe((imageUrl) => {
+      const a = document.createElement('a');
+      a.href = imageUrl;
+      a.download = arg0;
+      a.click();
+    });
+  }
+  // add OverlayModule to imports
+  openId = signal<string | null>(null);
+  positions: ConnectedPosition[] = [
+    { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top', offsetY: 8 },
+    { originX: 'center', originY: 'top', overlayX: 'center', overlayY: 'bottom', offsetY: -8 }, // fallback: open upward
+  ];
+  OpenPicture(event: PointerEvent) {
+    console.log(event);
+  }
   images = signal<DisplayImage[]>([]);
   loading = signal(true);
   error: string | null = null;
-
-  constructor(public imageService: ImageService) {}
 
   ngOnInit(): void {
     this.imageService.getAll().subscribe({

@@ -1,4 +1,13 @@
-import { Component, inject, forwardRef, viewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  forwardRef,
+  viewChild,
+  OnChanges,
+  SimpleChanges,
+  Input,
+  signal,
+} from '@angular/core';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -31,6 +40,13 @@ import { Image } from '../models/image.model';
   templateUrl: './gallery-component.html',
 })
 export class GalleryComponent {
+  input: string = '';
+
+  onInput(event: InputEvent) {
+    this.input = (event.target as HTMLInputElement).value;
+    console.log(this.input);
+  }
+
   private _bottomSheet = inject(MatBottomSheet);
   imageList = viewChild.required(ImageListComponent);
 

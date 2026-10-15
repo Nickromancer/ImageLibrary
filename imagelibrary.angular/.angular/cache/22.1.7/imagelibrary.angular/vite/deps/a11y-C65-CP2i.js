@@ -1,9 +1,9 @@
 import { Dc as Injector, Ec as InjectionToken, Fc as NgZone, Wi as setClassMetadata, ao as ɵɵdefineService, dr as Service, mc as DOCUMENT, nr as QueryList, sl as inject, tl as effect, uc as APP_ID, ul as isSignal, xl as signal } from "./core-CVHS-hD8.js";
 import { Ct as take, Dn as isObservable, Qn as Subject, Tt as debounceTime, Xt as filter, jn as of, m as tap, ur as Subscription, vn as map } from "./esm5-ChK3bs0s.js";
-import { a as FocusTrap, l as InteractivityChecker } from "./_id-generator-chunk-pTONyQgT.js";
-import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
+import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
+import { c as InteractivityChecker, i as FocusTrap } from "./_a11y-module-chunk-gl0GimJf.js";
 import { t as _VisuallyHiddenLoader } from "./private-CSMSo6mO.js";
 //#region node_modules/@angular/cdk/fesm2022/_typeahead-chunk.mjs
 var DEFAULT_TYPEAHEAD_DEBOUNCE_INTERVAL_MS = 200;

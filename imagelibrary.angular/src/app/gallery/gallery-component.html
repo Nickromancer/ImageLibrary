@@ -2,7 +2,9 @@
   <div
     class="h-screen w-screen bg-cover bg-center bg-[url('/halftone.png')] bg-blend-lighten bg-gray-400 fixed top-0 -z-1"
   ></div>
-  <div class="flex flex-col h-screen w-screen fixed top-0 z-1">
+  <div
+    class="flex flex-col h-screen w-screen fixed top-0 z-1 pointer-events-none *:pointer-events-auto"
+  >
     <div>
       <div class="absolute left-5 top-5">
         <button matFab="filled">
@@ -11,7 +13,7 @@
       </div>
     </div>
     <!-- Top left -->
-    <div class="absolute left-5 bottom-5 w-1 flex flex-col gap-5">
+    <div class="absolute left-5 bottom-5 w-1 flex flex-col gap-5 *:pointer-events-auto">
       <button matFab="filled" (click)="openBottomSheet()">
         <mat-icon>add</mat-icon>
       </button>
@@ -22,20 +24,20 @@
         <mat-icon>settings</mat-icon>
       </button>
     </div>
-    <div class="absolute left-25 bottom-5">
+    <div class="absolute left-25 bottom-5 pointer-events-auto">
       <button matFab="filled" class="fill-amber-200">
         <mat-icon>keyboard_arrow_up</mat-icon>
       </button>
     </div>
     <!-- Bottom left -->
-    <div class="absolute bottom-0 left-1/2 -mx-50">
+    <div class="absolute bottom-0 left-1/2 -mx-50 pointer-events-auto">
       <mat-form-field class="w-100">
-        <input matInput placeholder="Search for..." value="" />
+        <input matInput placeholder="Search for..." (input)="onInput($event)" />
       </mat-form-field>
       <!--       <input matInput placeholder="Ex. Pizza" class="w-100 h-10 rounded-full" /> -->
     </div>
     <!-- Bottom -->
-    <div class="absolute right-5 bottom-5">
+    <div class="absolute right-5 bottom-5 pointer-events-auto">
       <button matFab="filled">
         <mat-icon>filter_list</mat-icon>
       </button>

@@ -1,10 +1,10 @@
 import { Dc as Injector, Dr as ViewEncapsulation, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, Wi as setClassMetadata, cn as Component, no as ɵɵdefineDirective, sl as inject, to as ɵɵdefineComponent, wn as Directive, xa as ɵɵclassProp } from "./core-CVHS-hD8.js";
-import { A as isFakeTouchstartFromScreenReader, D as _getEventTarget, E as normalizePassiveListenerOptions, k as isFakeMousedownFromScreenReader } from "./_id-generator-chunk-pTONyQgT.js";
 import { r as Platform, t as coerceElement } from "./_element-chunk-DcF6XJbO.js";
+import { r as _getEventTarget } from "./_id-generator-chunk-DR8zbnVS.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
-import "./private-CSMSo6mO.js";
+import { E as isFakeTouchstartFromScreenReader, T as isFakeMousedownFromScreenReader, w as normalizePassiveListenerOptions } from "./_a11y-module-chunk-gl0GimJf.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
+import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
 //#region node_modules/@angular/material/fesm2022/_ripple-chunk.mjs
 var RippleState;
 (function(RippleState) {

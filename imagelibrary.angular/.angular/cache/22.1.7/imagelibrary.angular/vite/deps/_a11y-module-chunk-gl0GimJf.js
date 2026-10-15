@@ -1,8 +1,9 @@
-import { $n as Output, Dc as Injector, Dl as ɵɵdefineInjector, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, Mr as afterNextRender, O as booleanAttribute, Wi as setClassMetadata, ao as ɵɵdefineService, ar as RendererFactory2, bc as EventEmitter, dr as Service, fc as CSP_NONCE, la as ɵɵNgOnChangesFeature, mc as DOCUMENT, no as ɵɵdefineDirective, qn as NgModule, ro as ɵɵdefineNgModule, sl as inject, uc as APP_ID, wn as Directive } from "./core-CVHS-hD8.js";
+import { $n as Output, Dc as Injector, Dl as ɵɵdefineInjector, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, Mr as afterNextRender, O as booleanAttribute, Wi as setClassMetadata, ao as ɵɵdefineService, ar as RendererFactory2, bc as EventEmitter, dr as Service, fc as CSP_NONCE, la as ɵɵNgOnChangesFeature, mc as DOCUMENT, no as ɵɵdefineDirective, qn as NgModule, ro as ɵɵdefineNgModule, sl as inject, wn as Directive } from "./core-CVHS-hD8.js";
 import { Ct as take, Qn as Subject, T as skip, Tt as debounceTime, Xt as filter, Zn as BehaviorSubject, dn as concat, g as takeUntil, gt as distinctUntilChanged, hn as combineLatest, jn as of, rr as Observable, vn as map, x as startWith } from "./esm5-ChK3bs0s.js";
-import "./keycodes-CMhLpUyt.js";
 import { n as coerceNumberProperty, r as Platform, t as coerceElement } from "./_element-chunk-DcF6XJbO.js";
+import { a as _getShadowRoot, i as _getFocusedElementPierceShadowDom, n as coerceArray, r as _getEventTarget } from "./_id-generator-chunk-DR8zbnVS.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
+import "./keycodes-CMhLpUyt.js";
 import { n as _setInnerHtml, t as _VisuallyHiddenLoader } from "./private-CSMSo6mO.js";
 import { r as DomSanitizer } from "./platform-browser-BiN1Nv-Q.js";
 //#region node_modules/@angular/cdk/fesm2022/_fake-event-detection-chunk.mjs
@@ -12,38 +13,6 @@ function isFakeMousedownFromScreenReader(event) {
 function isFakeTouchstartFromScreenReader(event) {
 	const touch = event.touches && event.touches[0] || event.changedTouches && event.changedTouches[0];
 	return !!touch && touch.identifier === -1 && (touch.radiusX == null || touch.radiusX === 1) && (touch.radiusY == null || touch.radiusY === 1);
-}
-//#endregion
-//#region node_modules/@angular/cdk/fesm2022/_shadow-dom-chunk.mjs
-var shadowDomIsSupported;
-function _supportsShadowDom() {
-	if (shadowDomIsSupported == null) {
-		const head = typeof document !== "undefined" ? document.head : null;
-		shadowDomIsSupported = !!(head && (head.createShadowRoot || head.attachShadow));
-	}
-	return shadowDomIsSupported;
-}
-function _getShadowRoot(element) {
-	if (_supportsShadowDom()) {
-		const rootNode = element.getRootNode ? element.getRootNode() : null;
-		if (typeof ShadowRoot !== "undefined" && ShadowRoot && rootNode instanceof ShadowRoot) return rootNode;
-	}
-	return null;
-}
-function _getFocusedElementPierceShadowDom() {
-	let activeElement = typeof document !== "undefined" && document ? document.activeElement : null;
-	while (activeElement && activeElement.shadowRoot) {
-		const newActiveElement = activeElement.shadowRoot.activeElement;
-		if (newActiveElement === activeElement) break;
-		else activeElement = newActiveElement;
-	}
-	return activeElement;
-}
-function _getEventTarget(event) {
-	if (event.composedPath) try {
-		return event.composedPath()[0];
-	} catch {}
-	return event.target;
 }
 //#endregion
 //#region node_modules/@angular/cdk/fesm2022/_passive-listeners-chunk.mjs
@@ -380,11 +349,6 @@ var CdkMonitorFocus = class CdkMonitorFocus {
 		}]
 	}], null, { cdkFocusChange: [{ type: Output }] });
 })();
-//#endregion
-//#region node_modules/@angular/cdk/fesm2022/_array-chunk.mjs
-function coerceArray(value) {
-	return Array.isArray(value) ? value : [value];
-}
 //#endregion
 //#region node_modules/@angular/cdk/fesm2022/_breakpoints-observer-chunk.mjs
 var mediaQueriesForWebkitCompatibility = /* @__PURE__ */ new Set();
@@ -1327,29 +1291,4 @@ var A11yModule = class A11yModule {
 	}], () => [], null);
 })();
 //#endregion
-//#region node_modules/@angular/cdk/fesm2022/_id-generator-chunk.mjs
-var counters = /* @__PURE__ */ new Map();
-var _IdGenerator = class _IdGenerator {
-	_appId = inject(APP_ID);
-	static _infix = `a${Math.floor(Math.random() * 1e5).toString()}`;
-	getId(prefix, randomize = false) {
-		if (this._appId !== "ng") prefix += this._appId;
-		let count = counters.get(prefix);
-		if (count === void 0) count = 0;
-		else count++;
-		counters.set(prefix, count);
-		return `${prefix}${randomize ? _IdGenerator._infix + "-" : ""}${count}`;
-	}
-	static ɵfac = function _IdGenerator_Factory(__ngFactoryType__) {
-		return new (__ngFactoryType__ || _IdGenerator)();
-	};
-	static ɵprov = /* @__PURE__ */ ɵɵdefineService({
-		token: _IdGenerator,
-		factory: _IdGenerator.ɵfac
-	});
-};
-(() => {
-	(typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_IdGenerator, [{ type: Service }], null, null);
-})();
-//#endregion
-export { isFakeTouchstartFromScreenReader as A, INPUT_MODALITY_DETECTOR_DEFAULT_OPTIONS as C, _getEventTarget as D, normalizePassiveListenerOptions as E, _getFocusedElementPierceShadowDom as O, FocusMonitorDetectionMode as S, InputModalityDetector as T, MediaMatcher as _, FocusTrap as a, FOCUS_MONITOR_DEFAULT_OPTIONS as b, HighContrastModeDetector as c, LIVE_ANNOUNCER_DEFAULT_OPTIONS as d, LIVE_ANNOUNCER_ELEMENT_TOKEN as f, BreakpointObserver as g, ObserversModule as h, CdkTrapFocus as i, isFakeMousedownFromScreenReader as k, InteractivityChecker as l, CdkObserveContent as m, A11yModule as n, FocusTrapFactory as o, LiveAnnouncer as p, CdkAriaLive as r, HighContrastMode as s, _IdGenerator as t, IsFocusableConfig as u, coerceArray as v, INPUT_MODALITY_DETECTOR_OPTIONS as w, FocusMonitor as x, CdkMonitorFocus as y };
+export { InputModalityDetector as C, isFakeTouchstartFromScreenReader as E, INPUT_MODALITY_DETECTOR_OPTIONS as S, isFakeMousedownFromScreenReader as T, CdkMonitorFocus as _, FocusTrapFactory as a, FocusMonitorDetectionMode as b, InteractivityChecker as c, LIVE_ANNOUNCER_ELEMENT_TOKEN as d, LiveAnnouncer as f, MediaMatcher as g, BreakpointObserver as h, FocusTrap as i, IsFocusableConfig as l, ObserversModule as m, CdkAriaLive as n, HighContrastMode as o, CdkObserveContent as p, CdkTrapFocus as r, HighContrastModeDetector as s, A11yModule as t, LIVE_ANNOUNCER_DEFAULT_OPTIONS as u, FOCUS_MONITOR_DEFAULT_OPTIONS as v, normalizePassiveListenerOptions as w, INPUT_MODALITY_DETECTOR_DEFAULT_OPTIONS as x, FocusMonitor as y };
