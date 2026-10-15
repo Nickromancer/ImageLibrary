@@ -3,10 +3,10 @@ import { D as shareReplay, Qn as Subject, U as pairwise, Xt as filter, g as take
 import { t as _IdGenerator } from "./_id-generator-chunk-pTONyQgT.js";
 import { Y as NgTemplateOutlet } from "./common-BTPD6OCC.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
-import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
-import "./platform-CI1lutth.js";
-import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
 import { i as Directionality } from "./bidi-BIOWbFqv.js";
+import "./platform-CI1lutth.js";
+import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
+import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
 //#region node_modules/@angular/cdk/fesm2022/observers-private.mjs
 var loopLimitExceededErrorHandler = (e) => {
 	if (e instanceof ErrorEvent && e.message === "ResizeObserver loop limit exceeded") console.error(`${e.message}. This could indicate a performance issue with your app. See https://github.com/WICG/resize-observer/blob/master/explainer.md#error-handling`);

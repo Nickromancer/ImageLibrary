@@ -68,7 +68,6 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-var connectionString = builder.Configuration["ImageLibrary:ConnectionString"];
 
 
 builder.Services.AddSingleton<IDataAccess, DemoDataAccess>();
@@ -80,7 +79,11 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString!));
+//var connectionString = builder.Configuration["ImageLibrary:ConnectionString"];
+//builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString!));
+
+builder.Services.AddDbContextPool<AppDbContext>(opt =>
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("ImageLibrary")));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

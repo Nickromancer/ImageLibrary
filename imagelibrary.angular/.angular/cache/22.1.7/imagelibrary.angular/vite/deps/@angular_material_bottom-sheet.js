@@ -4,9 +4,9 @@ import { O as _getFocusedElementPierceShadowDom, g as BreakpointObserver, l as I
 import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
 import "./private-CSMSo6mO.js";
-import { n as Breakpoints, t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
-import { a as createBlockScrollStrategy, c as createOverlayRef, d as CdkPortalOutlet, f as ComponentPortal, i as OverlayRef, m as TemplatePortal, n as OverlayContainer, p as PortalModule, r as OverlayModule, s as createGlobalPositionStrategy, t as OverlayConfig, u as BasePortalOutlet } from "./overlay-DZp_Fi4r.js";
 import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
+import { a as createBlockScrollStrategy, c as createOverlayRef, d as CdkPortalOutlet, f as ComponentPortal, i as OverlayRef, m as TemplatePortal, n as OverlayContainer, p as PortalModule, r as OverlayModule, s as createGlobalPositionStrategy, t as OverlayConfig, u as BasePortalOutlet } from "./overlay-Cu1DoqCD.js";
+import { n as Breakpoints, t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
 //#region node_modules/@angular/cdk/fesm2022/dialog.mjs
 function CdkDialogContainer_ng_template_0_Template(rf, ctx) {}
 var DialogConfig = class {

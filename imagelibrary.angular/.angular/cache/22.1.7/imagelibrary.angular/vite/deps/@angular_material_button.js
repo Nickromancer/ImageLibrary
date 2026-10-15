@@ -2,12 +2,12 @@ import { Ca as ɵɵconditional, Dl as ɵɵdefineInjector, Dr as ViewEncapsulatio
 import { x as FocusMonitor } from "./_id-generator-chunk-pTONyQgT.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import "./private-CSMSo6mO.js";
-import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
-import { a as _StructuralStylesLoader } from "./_ripple-chunk-CSaDqLmg.js";
-import "./platform-CI1lutth.js";
 import { t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { t as MatRippleModule } from "./_ripple-module-chunk-BG7wq9o1.js";
-import { t as MatRippleLoader } from "./_ripple-loader-chunk-B-K9W9W_.js";
+import "./platform-CI1lutth.js";
+import { t as _animationsDisabled } from "./_animation-chunk-CFfcyi-3.js";
+import { t as _StructuralStylesLoader } from "./_structural-styles-chunk-Datkot7X.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-DXEO9Znv.js";
+import { t as MatRippleLoader } from "./_ripple-loader-chunk-BMkf3w6-.js";
 //#region node_modules/@angular/material/fesm2022/_icon-button-chunk.mjs
 var _c0$1 = ["*", [[
 	"",

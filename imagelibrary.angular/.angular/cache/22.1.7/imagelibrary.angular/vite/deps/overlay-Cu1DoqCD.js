@@ -5,8 +5,8 @@ import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { jt as Location } from "./common-BTPD6OCC.js";
 import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
-import { _ as ViewportRuler, m as ScrollingModule, p as ScrollDispatcher, y as supportsScrollBehavior } from "./scrolling-CqcNghO1.js";
 import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
+import { _ as ViewportRuler, m as ScrollingModule, p as ScrollDispatcher, y as supportsScrollBehavior } from "./scrolling-CqcNghO1.js";
 //#region node_modules/@angular/cdk/fesm2022/_test-environment-chunk.mjs
 function _isTestEnvironment() {
 	return typeof __karma__ !== "undefined" && !!__karma__ || typeof jasmine !== "undefined" && !!jasmine || typeof jest !== "undefined" && !!jest || typeof Mocha !== "undefined" && !!Mocha;
