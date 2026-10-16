@@ -76,7 +76,7 @@ export class ChipsAutocomplete {
       this.tagService.getAllTagsFromImage(this.editId).subscribe({
         next: (tags) => this.tags.set(tags),
       });
-    }
+      }
   }
 
   add(event: MatChipInputEvent): void {

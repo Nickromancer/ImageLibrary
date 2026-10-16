@@ -1,20 +1,20 @@
 import { $n as Output, Ca as ɵɵconditional, Dc as Injector, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ea as ɵɵcontentQuery, Ec as InjectionToken, En as ElementRef, Fc as NgZone, In as Input, Mr as afterNextRender, O as booleanAttribute, Oo as ɵɵgetInheritedFactory, Pl as ɵɵnamespaceSVG, S as ViewChild, Ta as ɵɵconditionalCreate, Wi as setClassMetadata, Xo as ɵɵloadQuery, Yo as ɵɵlistener, Zo as ɵɵnextContext, a as ContentChildren, as as ɵɵprojectionDef, ba as ɵɵclassMap, bc as EventEmitter, bo as ɵɵelementEnd, ca as ɵɵInheritDefinitionFeature, cn as Component, d as HOST_TAG_NAME, da as ɵɵadvance, do as ɵɵdomElementEnd, fo as ɵɵdomElementStart, go as ɵɵelement, i as ContentChild, ir as Renderer2, is as ɵɵprojection, la as ɵɵNgOnChangesFeature, mc as DOCUMENT, mo as ɵɵdomProperty, no as ɵɵdefineDirective, nr as QueryList, os as ɵɵproperty, qn as NgModule, r as ChangeDetectorRef, rl as forwardRef, ro as ɵɵdefineNgModule, rt as numberAttribute, sc as ɵɵviewQuery, sl as inject, to as ɵɵdefineComponent, ua as ɵɵProvidersFeature, vs as ɵɵqueryRefresh, wn as Directive, xa as ɵɵclassProp, xo as ɵɵelementStart, ya as ɵɵattribute } from "./core-CVHS-hD8.js";
 import { Qn as Subject, b as switchMap, g as takeUntil, tn as merge, x as startWith } from "./esm5-ChK3bs0s.js";
+import { y as FocusMonitor } from "./_a11y-module-chunk-B52W7Oe-.js";
+import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { t as _IdGenerator } from "./_id-generator-chunk-DR8zbnVS.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
-import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
-import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
-import { y as FocusMonitor } from "./_a11y-module-chunk-gl0GimJf.js";
 import { t as _VisuallyHiddenLoader } from "./private-CSMSo6mO.js";
-import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
-import { p as FocusKeyManager } from "./a11y-C65-CP2i.js";
+import { p as FocusKeyManager } from "./a11y-DI2vG8c5.js";
+import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
 import { FormGroupDirective, NG_VALUE_ACCESSOR, NgControl, NgForm, Validators } from "./@angular_forms.js";
 import { r as FORM_FIELD } from "./signals-CANb_JIg.js";
 import "./platform-CI1lutth.js";
-import { n as MAT_RIPPLE_GLOBAL_OPTIONS, t as _StructuralStylesLoader } from "./_structural-styles-chunk-BQogTpXR.js";
-import { c as MatFormFieldControl, n as MAT_FORM_FIELD } from "./_form-field-chunk-BEoPsQRe.js";
-import { t as MatRippleModule } from "./_ripple-module-chunk-CkD9gz44.js";
-import { t as MatRippleLoader } from "./_ripple-loader-chunk-DcCzBHzt.js";
+import { t as _animationsDisabled } from "./_animation-chunk-dXwMwNgD.js";
+import { n as MAT_RIPPLE_GLOBAL_OPTIONS, t as _StructuralStylesLoader } from "./_structural-styles-chunk-DaIAe4HD.js";
+import { c as MatFormFieldControl, n as MAT_FORM_FIELD } from "./_form-field-chunk-C0fPV0FZ.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-DKfq6DAm.js";
+import { t as MatRippleLoader } from "./_ripple-loader-chunk-DDhtl-9B.js";
 import { n as ErrorStateMatcher, t as _ErrorStateTracker } from "./_error-state-chunk-BT57_CyR.js";
 //#region node_modules/@angular/material/fesm2022/chips.mjs
 var _c0 = [

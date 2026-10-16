@@ -14,6 +14,7 @@ import { TagService } from '../services/tag.service';
 import { MatAnchor } from '@angular/material/button';
 import { forkJoin, Observable } from 'rxjs';
 import { Console } from 'console';
+import { from, mergeMap, toArray } from 'rxjs';
 
 @Component({
   selector: 'app-popup',
@@ -46,6 +47,7 @@ export class PopupSheetComponent {
   newTags: string[] = [];
   tags: string[] = [''];
   editId: string = '';
+
   isEdit = false;
   public SetEdit(imageId: string, imageName: string, imageDescription: string) {
     this.imageForm.get('name')?.setValue(imageName);
@@ -86,10 +88,27 @@ export class PopupSheetComponent {
       ),
     );
 
-    forkJoin(uploads).subscribe({
-      next: (uploaded) => this._bottomSheetRef.dismiss(uploaded),
-      error: (err) => console.error('Upload failed', err),
-    });
+    const CONCURRENCY = 4;
+
+    from(this.images)
+      .pipe(
+        mergeMap(
+          (file) =>
+            this.imageService.upload(
+              file,
+              single ? this.imageForm.value.name! : file.name,
+              single ? this.imageForm.value.description! : '_',
+              file.type,
+              allTags,
+            ),
+          CONCURRENCY,
+        ),
+        toArray(),
+      )
+      .subscribe({
+        next: (uploaded) => this._bottomSheetRef.dismiss(uploaded),
+        error: (err) => console.error('Upload failed', err),
+      });
   }
 
   OnNewTagAdded(tags: string[]): void {

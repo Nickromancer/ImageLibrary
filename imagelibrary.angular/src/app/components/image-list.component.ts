@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { catchError, forkJoin, map, of } from 'rxjs';
 import { ImageService } from '../services/image.service';
@@ -22,7 +22,6 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { PopupSheetComponent } from '../popup-sheet.component/popup-sheet.component';
-import { TagService } from '../services/tag.service';
 
 interface DisplayImage extends Image {
   imageUrl: string;
@@ -46,15 +45,15 @@ export class ImageListComponent implements OnInit, OnDestroy {
   constructor(public imageService: ImageService) {}
   readonly dialog = inject(MatDialog);
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(EditDialog, {
-      data: {},
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
-      }
+  openDialog(image: DisplayImage): void {
+    // the grid only has thumbnails, so fetch the full-size picture
+    this.imageService.getImageUrl(image.id).subscribe((fullUrl) => {
+      const ref = this.dialog.open(ImageDialog, {
+        data: { imageUrl: fullUrl, name: image.name },
+        maxWidth: '95vw',
+        maxHeight: '95vh',
+      });
+      ref.afterClosed().subscribe(() => URL.revokeObjectURL(fullUrl));
     });
   }
   DeletePicture(arg0: string, arg1: string) {
@@ -70,7 +69,7 @@ export class ImageListComponent implements OnInit, OnDestroy {
       a.click();
     });
   }
-  // add OverlayModule to imports
+
   openId = signal<string | null>(null);
   positions: ConnectedPosition[] = [
     { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top', offsetY: 8 },
@@ -143,27 +142,22 @@ export class ImageListComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: 'editDialog',
-  templateUrl: 'editDialog.html',
+  selector: 'app-image-dialog',
   standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
+  template: `<img [src]="data.imageUrl" [alt]="data.name" (click)="dialogRef.close()" />`,
+  styles: [
+    `
+      img {
+        display: block;
+        max-width: 95vw;
+        max-height: 90vh;
+        object-fit: contain;
+        cursor: zoom-out;
+      }
+    `,
   ],
 })
-export class EditDialog {
-  readonly data = inject(MAT_DIALOG_DATA);
-  readonly dialogRef = inject(MatDialogRef<EditDialog>);
-  name = this.data.name;
-  animal = this.data.animal;
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+export class ImageDialog {
+  readonly data = inject<{ imageUrl: string; name: string }>(MAT_DIALOG_DATA);
+  readonly dialogRef = inject(MatDialogRef<ImageDialog>);
 }

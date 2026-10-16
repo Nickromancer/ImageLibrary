@@ -1,9 +1,9 @@
 import { Dc as Injector, Fc as NgZone, Wi as setClassMetadata, ao as ɵɵdefineService, ar as RendererFactory2, dr as Service, mc as DOCUMENT, sl as inject } from "./core-CVHS-hD8.js";
-import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
 import { r as _getEventTarget } from "./_id-generator-chunk-DR8zbnVS.js";
-import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
+import { r as Platform } from "./_element-chunk-DcF6XJbO.js";
 import "./platform-CI1lutth.js";
-import { a as defaultRippleAnimationConfig, i as RippleRenderer, n as MAT_RIPPLE_GLOBAL_OPTIONS } from "./_structural-styles-chunk-BQogTpXR.js";
+import { t as _animationsDisabled } from "./_animation-chunk-dXwMwNgD.js";
+import { a as defaultRippleAnimationConfig, i as RippleRenderer, n as MAT_RIPPLE_GLOBAL_OPTIONS } from "./_structural-styles-chunk-DaIAe4HD.js";
 //#region node_modules/@angular/material/fesm2022/_ripple-loader-chunk.mjs
 var eventListenerOptions = { capture: true };
 var rippleInteractionEvents = [

@@ -8,7 +8,19 @@
             [alt]="image.name"
             class="h-full w-full object-contain outline-0 rounded-2xl"
           />
-
+          <div
+            class="absolute right-14 top-2 opacity-0 transition-opacity duration-100 group-hover:opacity-100"
+          >
+            <button
+              matIconButton
+              cdkOverlayOrigin
+              #trigger="cdkOverlayOrigin"
+              class="bg-black/60! text-white! rounded-2xl"
+              (click)="openDialog(image)"
+            >
+              <mat-icon>fullscreen</mat-icon>
+            </button>
+          </div>
           <div
             class="absolute right-2 top-2 opacity-0 transition-opacity duration-100 group-hover:opacity-100"
             [class.opacity-100]="openId() === image.id"
