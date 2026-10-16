@@ -1,11 +1,16 @@
 // src/app/services/image.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Tag } from '../models/tag.model';
 
 @Injectable({ providedIn: 'root' })
 export class TagService {
+  getAllTagsFromImage(imageId: string): Observable<string[]> {
+    return this.http
+      .get<Tag[]>(`${this.baseUrl}/${imageId}/image`)
+      .pipe(map((tags) => tags.map((t) => t.name)));
+  }
   private baseUrl = '/api/tag';
 
   constructor(private http: HttpClient) {}

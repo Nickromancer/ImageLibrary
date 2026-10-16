@@ -1,24 +1,26 @@
-<div class="h-150 w-200 flex p-5 *:rounded-4xl gap-10">
-  <div class="w-1/2 h-full flex flex-col gap-5">
-    <div class="w-full h-full">
-      <app-file-drop-zone
-        accept="image/*"
-        acceptPrefix="image/"
-        [multiple]="true"
-        (filesSelected)="onFilesSelected($event)"
-        (filesRejected)="onFilesRejected($event)"
-      >
-        <span dropZoneLabel>Drop images here, or click to upload.</span>
-      </app-file-drop-zone>
+<div class="h-150 {{ isEdit ? 'w-100 mx-auto' : 'w-200' }} flex py-5 *:rounded-4xl gap-10">
+  @if (!isEdit) {
+    <div class="w-1/2 h-full flex flex-col gap-5">
+      <div class="w-full h-full">
+        <app-file-drop-zone
+          accept="image/*"
+          acceptPrefix="image/"
+          [multiple]="true"
+          (filesSelected)="onFilesSelected($event)"
+          (filesRejected)="onFilesRejected($event)"
+        >
+          <span dropZoneLabel>Drop images here, or click to upload.</span>
+        </app-file-drop-zone>
+      </div>
     </div>
-  </div>
+  }
   <!-- Picture Slot -->
-  <div class="h-full w-1/2 *:w-full flex flex-col gap-3">
+  <div class="h-full {{ isEdit ? 'w-full' : 'w-1/2' }} *:w-full flex flex-col gap-3">
     <form #f="ngForm" [formGroup]="imageForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="w-full">
         <mat-label>File Name</mat-label>
         @if (true) {}
-        <input matInput formControlName="name" />
+        <input matInput formControlName="name" value="" />
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Description</mat-label>
@@ -27,9 +29,12 @@
       <tag-chip-grid-component
         (outputNewTags)="OnNewTagAdded($event)"
         (outputChosenTags)="OnTagAdded($event)"
+        [editId]="editId"
       ></tag-chip-grid-component>
       <app-checklist-component></app-checklist-component>
-      <button matButton="elevated" type="submit" class="mt-5 w-full">Upload Image</button>
+      <button matButton="elevated" type="submit" class="mt-5 w-full">
+        {{ isEdit ? 'Edit Image' : 'Upload Image' }}
+      </button>
     </form>
   </div>
   <!-- Input Fields -->

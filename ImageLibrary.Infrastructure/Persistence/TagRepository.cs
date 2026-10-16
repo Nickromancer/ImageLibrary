@@ -33,6 +33,15 @@ namespace ImageLibrary.Infrastructure.Persistence
             return await _context.Tags.ToListAsync();
         }
 
+        public async Task<List<Tag>> GetAllTagsFromImageAsync(Guid id)
+        {
+            return await _context.Images
+                .AsNoTracking()
+                .Where(i => i.Id == id)
+                .SelectMany(i => i.Tags)
+                .ToListAsync();
+        }
+
         public Task<Tag> GetByIdAsync(int id)
         {
             throw new NotImplementedException();

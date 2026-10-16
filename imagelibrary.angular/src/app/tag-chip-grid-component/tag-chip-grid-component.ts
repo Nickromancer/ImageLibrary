@@ -1,6 +1,17 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, computed, EventEmitter, inject, model, Output, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  inject,
+  Input,
+  input,
+  model,
+  Output,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
@@ -26,6 +37,7 @@ export class ChipsAutocomplete {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly currentTag = model('');
   readonly tags = signal<string[]>([]);
+  @Input() editId: string = '';
   readonly allTags = signal<string[]>([]);
   startingTags = model<string[]>();
   @Output() outputNewTags = new EventEmitter<string[]>();
@@ -33,11 +45,11 @@ export class ChipsAutocomplete {
 
   newTags = <string[]>[];
   readonly filteredTags = computed(() => {
-    const currentTag = this.currentTag().toLowerCase();
-    const allTags = this.allTags();
-    return currentTag
-      ? allTags.filter((tag) => tag.toLowerCase().includes(currentTag))
-      : allTags.slice();
+    const current = this.currentTag().toLowerCase();
+    const selected = new Set(this.tags());
+    return this.allTags().filter(
+      (tag) => !selected.has(tag) && (!current || tag.toLowerCase().includes(current)),
+    );
   });
 
   readonly announcer = inject(LiveAnnouncer);
@@ -59,76 +71,50 @@ export class ChipsAutocomplete {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['editId'] && this.editId) {
+      this.tagService.getAllTagsFromImage(this.editId).subscribe({
+        next: (tags) => this.tags.set(tags),
+      });
+    }
+  }
+
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    if (this.tags().includes(value)) {
-      return;
-    }
-
-    if (!this.startingTags()!.includes(value)) {
-      this.tags.update((tags) => [...tags, value]);
-      this.newTags.push(value);
-      this.outputNewTags.emit(this.newTags);
-
-      event.chipInput.clear();
-      this.currentTag.set('');
-      return;
-    }
-
-    if (value) {
-      this.tags.update((tags) => [...tags, value]);
-
-      this.allTags.update((tag) => {
-        const filteredItems = tag.filter((x) => x != value);
-        return filteredItems;
-      });
-
-      console.log('Removed from list');
-    }
     event.chipInput.clear();
     this.currentTag.set('');
 
-    console.log('Tags selected ' + this.tags());
-    console.log('New Tags ' + this.newTags);
-    this.outputChosenTags.emit(this.tags());
-  }
+    if (!value || this.tags().includes(value)) return;
 
-  remove(tag: string): void {
-    this.tags.update((tags) => {
-      const index = tags.indexOf(tag);
-      if (index < 0) {
-        return tags;
-      }
+    this.tags.update((tags) => [...tags, value]);
 
-      tags.splice(index, 1);
-      this.announcer.announce(`Removed ${tag}`);
-
-      if (this.startingTags()!.includes(tag)) this.allTags.update((tags) => [...tags, tag]);
-      if (this.newTags.includes(tag)) this.newTags.filter((oldTag) => oldTag != tag);
-
-      this.outputChosenTags.emit(this.tags());
-      this.outputNewTags.emit(this.newTags);
-
-      console.log('Tags selected ' + tags);
-      console.log('New Tags ' + this.newTags);
-
-      return [...tags];
-    });
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.update((tags) => [...tags, event.option.viewValue]);
-
-    this.allTags.update((tag) => {
-      const filteredItems = tag.filter((x) => x != event.option.viewValue);
-      return filteredItems;
-    });
-
-    this.currentTag.set('');
-    event.option.deselect();
+    if (!this.startingTags()?.includes(value) && !this.newTags.includes(value)) {
+      this.newTags = [...this.newTags, value];
+    }
 
     this.outputChosenTags.emit(this.tags());
     this.outputNewTags.emit(this.newTags);
+  }
+
+  remove(tag: string): void {
+    if (!this.tags().includes(tag)) return;
+
+    this.tags.update((tags) => tags.filter((t) => t !== tag));
+    this.newTags = this.newTags.filter((t) => t !== tag);
+    this.announcer.announce(`Removed ${tag}`);
+
+    this.outputChosenTags.emit(this.tags());
+    this.outputNewTags.emit(this.newTags);
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const value = event.option.viewValue;
+    this.currentTag.set('');
+    event.option.deselect();
+
+    if (this.tags().includes(value)) return;
+
+    this.tags.update((tags) => [...tags, value]);
+    this.outputChosenTags.emit(this.tags());
   }
 }

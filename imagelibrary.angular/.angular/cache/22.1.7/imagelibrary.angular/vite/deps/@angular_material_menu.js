@@ -7,11 +7,12 @@ import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
 import { _ as ViewportRuler, i as CdkScrollableModule, p as ScrollDispatcher } from "./scrolling-CqcNghO1.js";
 import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { E as isFakeTouchstartFromScreenReader, T as isFakeMousedownFromScreenReader, y as FocusMonitor } from "./_a11y-module-chunk-gl0GimJf.js";
+import "./private-CSMSo6mO.js";
+import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
 import { p as FocusKeyManager } from "./a11y-C65-CP2i.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
-import { r as MatRipple, t as _StructuralStylesLoader } from "./_structural-styles-chunk-DRTjC8Co.js";
-import { t as MatRippleModule } from "./_ripple-module-chunk-hFLjVKX5.js";
+import { r as MatRipple, t as _StructuralStylesLoader } from "./_structural-styles-chunk-BQogTpXR.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-CkD9gz44.js";
 //#region node_modules/@angular/material/fesm2022/menu.mjs
 var _c0 = [[["mat-icon"], [
 	"",

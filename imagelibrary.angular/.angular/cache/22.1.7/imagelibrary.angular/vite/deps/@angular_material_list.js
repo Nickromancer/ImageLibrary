@@ -7,14 +7,15 @@ import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import { t as BidiModule } from "./bidi-BIOWbFqv.js";
 import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { m as ObserversModule, p as CdkObserveContent } from "./_a11y-module-chunk-gl0GimJf.js";
+import "./private-CSMSo6mO.js";
+import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
+import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
 import { p as FocusKeyManager } from "./a11y-C65-CP2i.js";
 import { NG_VALUE_ACCESSOR } from "./@angular_forms.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
-import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
-import { i as RippleRenderer, n as MAT_RIPPLE_GLOBAL_OPTIONS, t as _StructuralStylesLoader } from "./_structural-styles-chunk-DRTjC8Co.js";
+import { i as RippleRenderer, n as MAT_RIPPLE_GLOBAL_OPTIONS, t as _StructuralStylesLoader } from "./_structural-styles-chunk-BQogTpXR.js";
 import { t as MatPseudoCheckboxModule } from "./_pseudo-checkbox-module-chunk-Bj-4Tdis.js";
-import { t as MatRippleModule } from "./_ripple-module-chunk-hFLjVKX5.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-CkD9gz44.js";
 import { MatDivider, MatDividerModule } from "./@angular_material_divider.js";
 //#region node_modules/@angular/cdk/fesm2022/_selection-model-chunk.mjs
 var SelectionModel = class {

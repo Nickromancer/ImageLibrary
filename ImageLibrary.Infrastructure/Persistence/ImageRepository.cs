@@ -57,9 +57,39 @@ namespace ImageLibrary.Infrastructure.Persistence
                 .FirstOrDefaultAsync(i => i.ImageId == id, cancellationToken);
         }
 
-        public Task UpdateImageAsync(Image image)
+        public async Task<Image> UpdateImageAsync(
+            Guid id, string name, string description, IEnumerable<string> tagNames)
         {
-            throw new NotImplementedException();
+            var img = await _context.Images
+                .Include(i => i.Tags)
+                .FirstOrDefaultAsync(i => i.Id == id)
+                ?? throw new KeyNotFoundException($"Image {id} not found.");
+
+            img.Name = name;
+            img.Description = description;
+
+            var names = tagNames
+                .Select(n => n.Trim())
+                .Where(n => n.Length > 0)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            var existing = await _context.Tags
+                .Where(t => names.Contains(t.Name))
+                .ToListAsync();
+
+            var missing = names
+                .Except(existing.Select(t => t.Name), StringComparer.OrdinalIgnoreCase)
+                .Select(n => new Tag { Name = n });
+
+            img.Tags.Clear();
+            foreach (var tag in existing.Concat(missing))
+                img.Tags.Add(tag);
+
+            img.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+            return img;
         }
     }
 }

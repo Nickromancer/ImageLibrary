@@ -34,12 +34,15 @@
               (detach)="openId.set(null)"
             >
               <div class="w-40 rounded-2xl bg-white p-2 shadow-xl">
-                <button class="w-full rounded-lg px-4 py-2 text-left font-medium hover:bg-gray-200">
+                <button
+                  class="w-full rounded-lg px-4 py-2 text-left font-medium hover:bg-gray-200"
+                  (click)="openBottomSheet(image.id, image.name, image.description)"
+                >
                   Edit Image
                 </button>
                 <button
                   class="w-full rounded-lg px-4 py-2 text-left font-medium hover:bg-gray-200"
-                  (click)="DownloadPicture(image.id)"
+                  (click)="DownloadPicture(image.id, image.name)"
                 >
                   Download image
                 </button>

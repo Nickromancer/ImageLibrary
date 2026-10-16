@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ImageService } from '../services/image.service';
 import { TagService } from '../services/tag.service';
 import { MatAnchor } from '@angular/material/button';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-popup',
@@ -33,6 +34,9 @@ import { forkJoin } from 'rxjs';
   ],
 })
 export class PopupSheetComponent {
+  onEdit() {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private imageService: ImageService,
     private tagService: TagService,
@@ -41,8 +45,32 @@ export class PopupSheetComponent {
   images: File[] = [];
   newTags: string[] = [];
   tags: string[] = [''];
+  editId: string = '';
+  isEdit = false;
+  public SetEdit(imageId: string, imageName: string, imageDescription: string) {
+    this.imageForm.get('name')?.setValue(imageName);
+    this.imageForm.get('description')?.setValue(imageDescription);
+    this.isEdit = true;
+    this.editId = imageId;
+  }
 
   onSubmit(): void {
+    if (this.isEdit) {
+      const allTags = [...new Set([...this.tags, ...this.newTags])];
+      this.imageService
+        .UpdateImage(
+          this.editId,
+          this.imageForm.value.name!,
+          this.imageForm.value.description!,
+          allTags,
+        )
+        .subscribe({
+          next: (updated) => this._bottomSheetRef.dismiss(updated),
+          error: (err) => console.error('Update failed', err),
+        });
+      return;
+    }
+
     if (this.images.length === 0) return;
 
     const single: boolean = this.images.length === 1;

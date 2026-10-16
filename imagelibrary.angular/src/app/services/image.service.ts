@@ -45,4 +45,13 @@ export class ImageService {
   deleteImage(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  UpdateImage(id: string, name: string, description: string, tags: string[]): Observable<void> {
+    const form = new FormData();
+    form.append('Name', name);
+    form.append('Description', description);
+    tags.forEach((tag) => form.append('Tags', tag));
+
+    return this.http.put<void>(`${this.baseUrl}/${id}`, form);
+  }
 }

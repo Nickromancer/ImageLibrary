@@ -6,15 +6,15 @@ import { i as Directionality, t as BidiModule } from "./bidi-BIOWbFqv.js";
 import { t as hasModifierKey } from "./keycodes-CMhLpUyt.js";
 import { y as FocusMonitor } from "./_a11y-module-chunk-gl0GimJf.js";
 import { t as _VisuallyHiddenLoader } from "./private-CSMSo6mO.js";
+import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
 import { p as FocusKeyManager } from "./a11y-C65-CP2i.js";
 import { FormGroupDirective, NG_VALUE_ACCESSOR, NgControl, NgForm, Validators } from "./@angular_forms.js";
 import { r as FORM_FIELD } from "./signals-CANb_JIg.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
-import { n as MAT_RIPPLE_GLOBAL_OPTIONS, t as _StructuralStylesLoader } from "./_structural-styles-chunk-DRTjC8Co.js";
-import { c as MatFormFieldControl, n as MAT_FORM_FIELD } from "./_form-field-chunk-DfwFQqeu.js";
-import { t as MatRippleModule } from "./_ripple-module-chunk-hFLjVKX5.js";
-import { t as MatRippleLoader } from "./_ripple-loader-chunk-3c7bbzrD.js";
+import { n as MAT_RIPPLE_GLOBAL_OPTIONS, t as _StructuralStylesLoader } from "./_structural-styles-chunk-BQogTpXR.js";
+import { c as MatFormFieldControl, n as MAT_FORM_FIELD } from "./_form-field-chunk-BEoPsQRe.js";
+import { t as MatRippleModule } from "./_ripple-module-chunk-CkD9gz44.js";
+import { t as MatRippleLoader } from "./_ripple-loader-chunk-DcCzBHzt.js";
 import { n as ErrorStateMatcher, t as _ErrorStateTracker } from "./_error-state-chunk-BT57_CyR.js";
 //#region node_modules/@angular/material/fesm2022/chips.mjs
 var _c0 = [

@@ -2,10 +2,11 @@ import { $n as Output, Dl as ɵɵdefineInjector, Dr as ViewEncapsulation, Ec as 
 import { t as _IdGenerator } from "./_id-generator-chunk-DR8zbnVS.js";
 import { t as _CdkPrivateStyleLoader } from "./_style-loader-chunk-CvMh5ar0.js";
 import { t as BidiModule } from "./bidi-BIOWbFqv.js";
+import "./private-CSMSo6mO.js";
+import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
 import { NG_VALIDATORS, NG_VALUE_ACCESSOR } from "./@angular_forms.js";
 import "./platform-CI1lutth.js";
-import { t as _animationsDisabled } from "./_animation-chunk-Cqx4Xi5R.js";
-import { r as MatRipple, t as _StructuralStylesLoader } from "./_structural-styles-chunk-DRTjC8Co.js";
+import { r as MatRipple, t as _StructuralStylesLoader } from "./_structural-styles-chunk-BQogTpXR.js";
 //#region node_modules/@angular/material/fesm2022/_internal-form-field-chunk.mjs
 var _c0$1 = ["*"];
 var _MatInternalFormField = class _MatInternalFormField {

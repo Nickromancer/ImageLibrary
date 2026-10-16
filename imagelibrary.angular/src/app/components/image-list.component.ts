@@ -1,14 +1,28 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { catchError, forkJoin, map, of } from 'rxjs';
 import { ImageService } from '../services/image.service';
 import { Image } from '../models/image.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { OverlayModule, ConnectedPosition } from '@angular/cdk/overlay';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { PopupSheetComponent } from '../popup-sheet.component/popup-sheet.component';
+import { TagService } from '../services/tag.service';
 
 interface DisplayImage extends Image {
   imageUrl: string;
@@ -22,7 +36,6 @@ interface DisplayImage extends Image {
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    RouterLink,
     MatIconModule,
     MatMenuModule,
     OverlayModule,
@@ -30,17 +43,30 @@ interface DisplayImage extends Image {
   templateUrl: './image-list.component.html',
 })
 export class ImageListComponent implements OnInit, OnDestroy {
+  constructor(public imageService: ImageService) {}
+  readonly dialog = inject(MatDialog);
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(EditDialog, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      if (result !== undefined) {
+      }
+    });
+  }
   DeletePicture(arg0: string, arg1: string) {
     this.imageService.deleteImage(arg0).subscribe({});
     this.images.update((current) => current.filter((image) => image.imageUrl !== arg1));
   }
-  constructor(public imageService: ImageService) {}
 
-  DownloadPicture(arg0: string) {
+  DownloadPicture(arg0: string, arg1: string) {
     this.imageService.getImageUrl(arg0).subscribe((imageUrl) => {
       const a = document.createElement('a');
       a.href = imageUrl;
-      a.download = arg0;
+      a.download = arg1;
       a.click();
     });
   }
@@ -90,7 +116,6 @@ export class ImageListComponent implements OnInit, OnDestroy {
     });
   }
 
-  /** Called by the parent after an upload; fetches only the new thumbnails. */
   addImages(newImages: Image[]): void {
     newImages.forEach((image) => {
       this.imageService.getThumbnailUrl(image.id).subscribe((imageUrl) => {
@@ -108,5 +133,37 @@ export class ImageListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.images().forEach((image) => URL.revokeObjectURL(image.imageUrl));
+  }
+  private _bottomSheet = inject(MatBottomSheet);
+
+  openBottomSheet(imageId: string, imageName: string, imageDescription: string): void {
+    const ref = this._bottomSheet.open(PopupSheetComponent);
+    ref.instance.SetEdit(imageId, imageName, imageDescription);
+  }
+}
+
+@Component({
+  selector: 'editDialog',
+  templateUrl: 'editDialog.html',
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+  ],
+})
+export class EditDialog {
+  readonly data = inject(MAT_DIALOG_DATA);
+  readonly dialogRef = inject(MatDialogRef<EditDialog>);
+  name = this.data.name;
+  animal = this.data.animal;
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

@@ -13,6 +13,7 @@ using ImageLibrary.Application.UseCases.GetImageById;
 using ImageLibrary.Application.UseCases.GetThumbnailById;
 using ImageLibrary.Application.UseCases.GetPictureById;
 using ImageLibrary.Application.UseCases.DeleteImage;
+using ImageLibrary.Application.UseCases.UpdateImage;
 
 
 namespace ImageLibrary.Presentation.Controllers
@@ -43,6 +44,12 @@ namespace ImageLibrary.Presentation.Controllers
             public string Name { get; set; }
             public string Description { get; set; }
             public IFormFile File { get; set; }
+            public string[] Tags { get; set; }
+        }
+        public class UpdateImageRequest
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
             public string[] Tags { get; set; }
         }
 
@@ -118,6 +125,29 @@ namespace ImageLibrary.Presentation.Controllers
         {
             await _mediator.Send(new DeleteImageCommand(id));
             return Ok();
+        }
+
+        [Authorize]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put([FromForm] UpdateImageRequest request, Guid id)
+        {
+
+            var result = await _mediator.Send(new UpdateImageCommand(
+                id,
+                request.Name,
+                request.Description,
+                request.Tags
+            ));
+
+            return Ok(new ImageResponse(
+                result.Id,
+                result.Name,
+                result.Description,
+                result.ContentType,
+                result.CreatedAt,
+                result.UpdatedAt,
+                result.Tags.Select(t => t.Name).ToList()
+            ));
         }
     }
 }

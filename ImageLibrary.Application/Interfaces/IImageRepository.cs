@@ -12,7 +12,7 @@ namespace ImageLibrary.Application.Interfaces
         Task<ImageThumbnail> GetImageThumbnailByIdAsync(Guid id, CancellationToken cancellation);
         Task<List<Image>> GetAllImagesAsync();
         Task<Image> AddImageAsync(Image image);
-        Task UpdateImageAsync(Image image);
+        Task<Image> UpdateImageAsync(Guid id, string Name, string Description, IEnumerable<string> tagNames);
         Task DeleteImageAsync(Guid id, CancellationToken cancellation);
     }
 }

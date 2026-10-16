@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ImageLibrary.Application.UseCases.GetAllTags;
+using ImageLibrary.Application.UseCases.GetAllTagsFromImage;
 using ImageLibrary.Application.UseCases.UploadTag;
 using ImageLibrary.Domain.Entities;
 using MediatR;
@@ -45,6 +46,13 @@ namespace ImageLibrary.Presentation.Controllers
         public async Task<List<Tag>> Get()
         {
             return await _mediator.Send(new GetAllTagsQuery());
+        }
+
+        [Authorize]
+        [HttpGet("{id}/image")]
+        public async Task<List<Tag>> GetAllTagsFromImage(Guid id)
+        {
+            return await _mediator.Send(new GetAllTagsFromImageQuery(id));
         }
     }
 }
